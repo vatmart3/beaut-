@@ -1,6 +1,7 @@
 "use client";
 
-import Image from "next/image";
+import { Photo } from "@/components/ui/Photo";
+import type { PhotoId } from "@/data/photos";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,12 +9,12 @@ import { useReducedMotion } from "@/lib/device";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const items: { t: string; img?: string }[] = [
-  { t: "Soins visage", img: "/images/brume/regard.jpg" },
+const items: { t: string; img?: PhotoId }[] = [
+  { t: "Soins visage", img: "regard" },
   { t: "Gommages au sel" },
-  { t: "Modelages", img: "/images/brume/epaules.jpg" },
+  { t: "Modelages", img: "epaules" },
   { t: "Enveloppements à l'argile" },
-  { t: "Rituels duo", img: "/images/brume/levres.jpg" },
+  { t: "Rituels duo", img: "levres" },
   { t: "Beauté des mains" },
 ];
 
@@ -61,7 +62,7 @@ export function Marquee() {
           </span>
           {it.img ? (
             <span className="relative h-[clamp(3rem,2rem+3.4vw,5.5rem)] w-[clamp(6rem,4rem+7vw,11rem)] shrink-0 overflow-hidden rounded-full">
-              <Image src={it.img} alt="" fill sizes="180px" className="object-cover" />
+              <Photo id={it.img} alt="" sizes="200px" />
             </span>
           ) : (
             <span className="size-3 shrink-0 rounded-full bg-argile" />

@@ -19,10 +19,10 @@ export const questions = [
     id: "besoin",
     titre: "De quoi avez-vous besoin, là, maintenant ?",
     options: [
-      { value: "detente", label: "Lâcher prise", detail: "épaules hautes, sommeil court", icone: "vague" },
-      { value: "eclat", label: "De l'éclat", detail: "teint terne, traits tirés", icone: "soleil" },
-      { value: "tiraillement", label: "Ma peau tire", detail: "après le soleil, le vent, un traitement", icone: "fissure" },
-      { value: "jambes", label: "Jambes lourdes", detail: "chaleur, station debout", icone: "jambes" },
+      { value: "detente", label: "Lâcher prise", detail: "épaules hautes, sommeil court", icone: "vague", photo: "epaules" },
+      { value: "eclat", label: "De l'éclat", detail: "teint terne, traits tirés", icone: "soleil", photo: "visageSerre" },
+      { value: "tiraillement", label: "Ma peau tire", detail: "après le soleil, le vent, un traitement", icone: "fissure", photo: "peau" },
+      { value: "jambes", label: "Jambes lourdes", detail: "chaleur, station debout", icone: "jambes", photo: "jambes" },
     ],
   },
   {
@@ -38,9 +38,9 @@ export const questions = [
     id: "zone",
     titre: "On s'occupe plutôt…",
     options: [
-      { value: "visage", label: "Du visage", detail: "peau, traits, teint", icone: "visage" },
-      { value: "corps", label: "Du corps", detail: "dos, jambes, peau", icone: "corps" },
-      { value: "les-deux", label: "Des deux", detail: "on ne choisit pas", icone: "deux" },
+      { value: "visage", label: "Du visage", detail: "peau, traits, teint", icone: "visage", photo: "visage" },
+      { value: "corps", label: "Du corps", detail: "dos, jambes, peau", icone: "corps", photo: "epaules" },
+      { value: "les-deux", label: "Des deux", detail: "on ne choisit pas", icone: "deux", photo: "duo" },
     ],
   },
   {

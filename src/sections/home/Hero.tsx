@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Photo } from "@/components/ui/Photo";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -253,7 +254,7 @@ export function Hero() {
           >
             <div className="flex items-stretch gap-2.5 p-2 sm:gap-4 sm:p-3 lg:p-3.5">
               <div className="relative aspect-square w-[60px] shrink-0 overflow-hidden rounded-[12px] bg-sable sm:w-[84px] sm:rounded-[16px] lg:w-[clamp(96px,8vw,124px)]">
-                <Image src="/images/brume/pommette.jpg" alt="" fill sizes="120px" className="object-cover" />
+                <Photo id="visageSerre" alt="" sizes="140px" />
               </div>
               <div className="flex min-w-0 flex-1 flex-col justify-between py-0.5">
                 <div className="hidden flex-wrap gap-1.5 xl:flex">

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { Photo } from "@/components/ui/Photo";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -50,7 +50,7 @@ export function Galerie() {
 
   const visuels: Record<string, React.ReactNode> = {
     "cabine-duo": <Matiere kind="lin" className="size-full" label="Cabine duo de l'institut BRUME, lin et enduit à la chaux" />,
-    "cabine-soin": <Image src="/images/brume/profil.jpg" alt="Soin visage dans la cabine de l'institut BRUME à Balaruc-les-Bains" fill sizes="40vw" className="object-cover" />,
+    "cabine-soin": <Photo id="visage" focal="50% 44%" alt="Soin visage dans la cabine de l'institut BRUME à Balaruc-les-Bains" sizes="(min-width:1024px) 40vw, 80vw" />,
     tisanerie: <Matiere kind="eau" className="size-full" label="Tisanerie de l'institut BRUME" />,
   };
 

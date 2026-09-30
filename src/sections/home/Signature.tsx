@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { Photo } from "@/components/ui/Photo";
 import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
@@ -20,21 +20,21 @@ const etapes = [
     n: "01",
     titre: "Lire la peau",
     texte: "Loupe lumineuse, quelques questions sur votre routine. Quinze minutes pour comprendre votre peau avant de la toucher.",
-    photo: "/images/brume/regard.jpg",
+    photo: "visageSerre" as const,
     legende: "Diagnostic · 15 min",
   },
   {
     n: "02",
     titre: "Nourrir en profondeur",
     texte: "Double nettoyage, exfoliation enzymatique, sérum à l'acide hyaluronique en deux poids moléculaires.",
-    photo: "/images/brume/pommette.jpg",
+    photo: "peau" as const,
     legende: "Protocole · 30 min",
   },
   {
     n: "03",
     titre: "Sceller l'éclat",
     texte: "Masque occlusif sous compresses tièdes, modelage en pressions glissées. Vous repartez la peau souple, sans brillance.",
-    photo: "/images/brume/levres.jpg",
+    photo: "levres" as const,
     legende: "Rituel · 15 min",
   },
 ];
@@ -133,7 +133,7 @@ export function Signature() {
                 transition={{ duration: 0.7, ease: ease.veil }}
               >
                 <div className="relative size-20 shrink-0 overflow-hidden rounded-[16px] sm:size-24">
-                  <Image src={e.photo} alt="" fill sizes="96px" className="object-cover" />
+                  <Photo id={e.photo} alt="" sizes="120px" />
                 </div>
                 <figcaption className="min-w-0">
                   <p className="text-[0.8rem] text-prune-soft">{e.legende}</p>

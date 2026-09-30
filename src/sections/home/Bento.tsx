@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { Photo } from "@/components/ui/Photo";
 import Link from "next/link";
 import { motion, useMotionValue, useSpring } from "motion/react";
 import type { ReactNode } from "react";
@@ -111,7 +111,7 @@ export function Bento() {
         <Tile
           href="/soins?categorie=visage"
           className="sm:col-span-2 lg:row-span-2"
-          visual={<Image src="/images/brume/visage.jpg" alt="Soin visage à Balaruc-les-Bains, teint lumineux" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover object-[50%_30%]" />}
+          visual={<Photo id="visage" focal="50% 40%" alt="Soin visage à Balaruc-les-Bains, teint lumineux" sizes="(min-width:1024px) 50vw, 100vw" />}
         >
           <Glass {...v} />
         </Tile>
@@ -119,17 +119,17 @@ export function Bento() {
           href="/soins?categorie=corps"
           className="sm:col-span-2"
           delay={0.08}
-          visual={<Image src="/images/brume/epaules.jpg" alt="Soin corps et modelage, épaules détendues" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />}
+          visual={<Photo id="epaules" alt="Soin corps et modelage, épaules détendues" sizes="(min-width:1024px) 50vw, 100vw" />}
         >
           <Glass {...c} />
         </Tile>
-        <Tile href="/soins?categorie=epilations" delay={0.16} visual={<Image src="/images/brume/pommette.jpg" alt="Peau nette après épilation à la cire tiède" fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" />}>
+        <Tile href="/soins?categorie=epilations" delay={0.16} visual={<Photo id="peau" alt="Peau nette après épilation à la cire tiède" sizes="(min-width:1024px) 25vw, 50vw" />}>
           <Glass {...e} />
         </Tile>
         <Tile href="/soins?categorie=mains-pieds" delay={0.24} visual={<Matiere kind="huile" className="size-full" />}>
           <Glass {...m} />
         </Tile>
-        <Tile href="/soins?categorie=duo" className="sm:col-span-2 lg:col-span-3" delay={0.1} visual={<Image src="/images/brume/nude.jpg" alt="" fill sizes="75vw" className="object-cover" />}>
+        <Tile href="/soins?categorie=duo" className="sm:col-span-2 lg:col-span-3" delay={0.1} visual={<Photo id="nude" alt="" sizes="75vw" />}>
           <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-10">
             <p className="max-w-[18ch] font-display text-[clamp(2rem,1rem+3vw,4rem)] font-light leading-[0.98] tracking-[-0.045em]">La cabine duo, pour vivre le même soin au même moment.</p>
           </div>

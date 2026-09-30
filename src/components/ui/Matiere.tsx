@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Photo } from "./Photo";
 import { useId } from "react";
 import type { Matiere as MatiereId } from "@/data/soins";
 import { cn } from "@/lib/cn";
@@ -26,7 +26,7 @@ export function Matiere({
     <div className={cn("relative overflow-hidden bg-sable", className)} role={label ? "img" : undefined} aria-label={label} aria-hidden={label ? undefined : true}>
       <div className={cn("absolute inset-0", breathe && "motion-safe:animate-breathe")}>
         {kind === "portrait" ? (
-          <Image src="/images/brume/pommette.jpg" alt="" fill sizes={sizes} className="object-cover object-center" />
+          <Photo id="visage" alt="" sizes={sizes} />
         ) : (
           <Svg kind={kind} id={id} />
         )}

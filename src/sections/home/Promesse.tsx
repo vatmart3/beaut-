@@ -1,6 +1,7 @@
 "use client";
 
-import Image from "next/image";
+import { Photo } from "@/components/ui/Photo";
+import type { PhotoId } from "@/data/photos";
 import { motion, useInView } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { RippleCanvas } from "@/components/effects/RippleCanvas";
@@ -8,7 +9,7 @@ import { ease } from "@/lib/motion";
 import { useReducedMotion } from "@/lib/device";
 import { dropState } from "./dropState";
 
-const phrase = ["Un", "soin", "de", "/images/brume/regard.jpg", "soixante", "minutes,", "ce", "sont", "soixante", "minutes", "de", "mains", "/images/brume/levres.jpg", "sur", "votre", "peau."];
+const phrase = ["Un", "soin", "de", "@regard", "soixante", "minutes,", "ce", "sont", "soixante", "minutes", "de", "mains", "@levres", "sur", "votre", "peau."];
 
 const chiffres = [
   { n: "60", label: "minutes de soin, c'est 60 minutes de mains sur votre peau" },
@@ -68,13 +69,13 @@ export function Promesse() {
           transition={{ staggerChildren: reduced ? 0 : 0.05, delayChildren: 0.6 }}
         >
           {phrase.map((tok, i) =>
-            tok.startsWith("/") ? (
+            tok.startsWith("@") ? (
               <motion.span
                 key={i}
                 className="relative mx-[0.12em] inline-block h-[0.78em] w-[1.9em] translate-y-[0.06em] overflow-hidden rounded-full align-baseline"
                 variants={{ hidden: { scale: reduced ? 1 : 0.4, opacity: 0 }, show: { scale: 1, opacity: 1, transition: { duration: 1, ease: ease.veil } } }}
               >
-                <Image src={tok} alt="" fill sizes="220px" className="object-cover" />
+                <Photo id={tok.slice(1) as PhotoId} alt="" sizes="240px" />
               </motion.span>
             ) : (
               <span key={i} className="inline-block overflow-hidden pb-[0.1em] align-bottom">
