@@ -110,7 +110,10 @@ export function RippleCanvas({
     const names = ["u_res", "u_origin", "u_t", "u_dur", "u_strength", "u_light", "u_shadow"];
     gl.current = { ctx, prog, u: Object.fromEntries(names.map((n) => [n, ctx.getUniformLocation(prog, n)])) };
     return () => {
-      ctx.getExtension("WEBGL_lose_context")?.loseContext();
+      // Pas de loseContext() : en StrictMode, le même canvas est réinitialisé
+      // aussitôt et récupérerait un contexte perdu.
+      ctx.deleteProgram(prog);
+      ctx.deleteBuffer(buf);
       gl.current = null;
     };
   }, [reduced]);

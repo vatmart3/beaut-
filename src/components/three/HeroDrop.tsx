@@ -149,6 +149,8 @@ function Scene({ shell, word, pointer, progress, home, lite, onReady }: Props) {
     const fall = prog * prog;
     ty += fall * size.height * 0.95;
     tx += fall * (0.5 - h.x) * size.width * 0.05;
+    // la goutte reste entière dans la coquille
+    tx = THREE.MathUtils.clamp(tx, h.r * 1.2, size.width - h.r * 1.3);
     const s = state.current;
     if (!s.init) {
       s.x = tx;
