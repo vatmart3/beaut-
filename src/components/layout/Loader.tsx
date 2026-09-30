@@ -36,5 +36,11 @@ export function Loader() {
   );
 }
 
-/** Script inline : marque la session pour ne montrer le loader qu'une fois. */
-export const loaderScript = `try{if(sessionStorage.getItem('brume-seen')){document.documentElement.setAttribute('data-seen','')}else{sessionStorage.setItem('brume-seen','1')}}catch(e){}`;
+/**
+ * Script inline (avant le premier rendu) :
+ * - marque la session pour ne montrer le loader qu'une fois ;
+ * - sur l'accueil, on arrive toujours sur le hero : le navigateur ne restaure
+ *   pas l'ancienne position et une ancre dans l'URL (ex. /#rituel) est retirée
+ *   avant qu'il ne défile jusqu'à elle.
+ */
+export const loaderScript = `try{if(sessionStorage.getItem('brume-seen')){document.documentElement.setAttribute('data-seen','')}else{sessionStorage.setItem('brume-seen','1')}}catch(e){}try{if(location.pathname==='/'){if('scrollRestoration' in history)history.scrollRestoration='manual';if(location.hash)history.replaceState(history.state,'',location.pathname+location.search);window.scrollTo(0,0);addEventListener('load',function(){if(!location.hash)window.scrollTo(0,0)})}}catch(e){}`;
