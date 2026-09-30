@@ -1,7 +1,9 @@
 "use client";
 
 import { motion } from "motion/react";
-import type { ElementType, ReactNode } from "react";
+import type { ReactNode } from "react";
+
+type TextTag = "p" | "h1" | "h2" | "h3" | "h4" | "span" | "div" | "blockquote";
 import { ease } from "@/lib/motion";
 import { useReducedMotion } from "@/lib/device";
 import { cn } from "@/lib/cn";
@@ -21,7 +23,7 @@ export function LineReveal({
   children,
 }: {
   text: string;
-  as?: ElementType;
+  as?: TextTag;
   className?: string;
   delay?: number;
   stagger?: number;

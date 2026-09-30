@@ -119,7 +119,10 @@ export function Header() {
             </div>
 
             <div className="flex items-center justify-end gap-2 lg:w-1/4">
-              <a href={site.contact.phoneHref} className={cn(pill, "hidden border-transparent text-prune hover:border-prune/35 xl:inline-flex")}>
+              <a
+                href={site.contact.phoneHref}
+                className="hidden min-h-11 items-center rounded-full border border-transparent px-4 font-display text-[0.875rem] text-prune transition-colors duration-[var(--dur-2)] hover:border-prune/35 xl:inline-flex"
+              >
                 {site.contact.phone}
               </a>
               <Link href="/reserver" className={cn(pill, "border-prune bg-prune text-lait hover:bg-[#2c1f26]")}>
