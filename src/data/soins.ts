@@ -587,7 +587,7 @@ export function prixDepart(s: Soin): number {
 }
 
 export function formatPrix(n: number): string {
-  return `${n.toLocaleString("fr-FR", { minimumFractionDigits: 0, maximumFractionDigits: 2 })} €`;
+  return `${n.toLocaleString("fr-FR", { minimumFractionDigits: 0, maximumFractionDigits: 2 })}\u00A0€`;
 }
 
 export function formatDuree(min: number): string {
