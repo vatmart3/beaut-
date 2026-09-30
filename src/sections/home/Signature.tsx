@@ -87,7 +87,7 @@ export function Signature() {
         </AnimatePresence>
 
         {/* flacon */}
-        <div className="absolute inset-x-0 top-[12%] bottom-[16%] mx-auto w-[min(92vw,560px)] lg:top-[6%] lg:bottom-[6%]">
+        <div className="absolute inset-x-0 top-[36%] bottom-[20%] mx-auto w-[min(92vw,560px)] lg:top-[6%] lg:bottom-[6%]">
           {capable ? <SerumBottle progress={progress} host={root} lite={coarse} /> : <BottleFallback />}
         </div>
 

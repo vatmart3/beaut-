@@ -248,7 +248,7 @@ export function Hero() {
           <article
             className={cn(
               s.card,
-              "absolute left-[40.6%] top-[70%] h-[22.8%] w-[60.2%] overflow-hidden rounded-[18px] border border-white/60 bg-[linear-gradient(115deg,rgba(239,226,216,0.97),rgba(250,246,241,0.94)_55%,rgba(255,253,250,0.9))] shadow-[0_20px_50px_-20px_rgba(34,27,29,0.4)] backdrop-blur-xl sm:rounded-[24px]",
+              "absolute left-[4%] top-[74%] w-[min(86vw,320px)] overflow-hidden rounded-[18px] border border-white/70 bg-[linear-gradient(115deg,rgba(245,232,224,0.8),rgba(255,255,255,0.7))] shadow-[0_24px_60px_-24px_rgba(34,27,29,0.45)] backdrop-blur-xl sm:left-[40%] sm:rounded-[24px] lg:left-[52%] lg:top-[71%] lg:w-[clamp(400px,34vw,540px)]",
             )}
           >
             <div className="flex items-stretch gap-2.5 p-2 sm:gap-4 sm:p-3 lg:p-3.5">
