@@ -51,8 +51,8 @@ export function Hero() {
     if (!sh || !e) return;
     const a = sh.getBoundingClientRect();
     const b = e.getBoundingClientRect();
-    const wide = a.width >= 768;
-    const r = Math.max(26, Math.min(a.height * 0.085, a.width * 0.075, 96));
+    const wide = a.width >= 1000;
+    const r = Math.max(24, Math.min(a.height * 0.072, a.width * 0.065, 82));
     home.current = {
       x: (b.left + b.width * (wide ? 0.42 : 0.3) - a.left) / a.width,
       y: (b.top + b.height * (wide ? 0.22 : 0.05) - a.top) / a.height,
@@ -169,16 +169,16 @@ export function Hero() {
       className={cn(s.hero, "shell relative isolate h-[max(640px,calc(100svh-1.5rem))] overflow-hidden md:max-h-[1100px] md:min-h-[680px]")}
     >
       {/* Accroche (h1) — en haut à gauche, comme la référence */}
-      <div ref={intro} className="absolute inset-x-5 top-[104px] z-30 sm:inset-x-10 md:left-[calc(var(--spacing-gutter)+1rem)] md:right-auto md:top-[18%] lg:top-[19%]">
+      <div ref={intro} className="absolute inset-x-5 top-[104px] z-30 sm:inset-x-10 sm:top-[120px] lg:left-[calc(var(--spacing-gutter)+1rem)] lg:right-auto lg:top-[19%]">
         <div className={s.intro}>
-          <h1 id="hero-title" className="max-w-[21ch] font-display text-[clamp(1.3rem,0.95rem+1.05vw,2.05rem)] font-light leading-[1.18] tracking-[-0.025em]">
+          <h1 id="hero-title" className="max-w-[19ch] xl:max-w-[21ch] font-display text-[clamp(1.3rem,0.95rem+1.05vw,2.05rem)] font-light leading-[1.18] tracking-[-0.025em]">
             <span className="sr-only">BRUME — </span>
             Institut de soins à <span className="whitespace-nowrap">Balaruc-les-Bains&#8239;:</span> visage, corps et rituels en duo
           </h1>
           <p className="mt-3 max-w-[34ch] text-[0.95rem] leading-relaxed text-prune-soft md:hidden">
             Deux praticiennes, une cabine duo, une tisanerie. Sur rendez-vous, du mardi au samedi.
           </p>
-          <Link href="#rituel" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-full border border-prune/35 px-4 font-display text-[0.85rem] md:hidden">
+          <Link href="#rituel" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-full border border-prune/35 px-4 font-display text-[0.85rem] xl:hidden">
             Votre rituel en 4 questions
             <Icon name="fleche-bas" size={15} />
           </Link>
@@ -259,17 +259,17 @@ export function Hero() {
                 <CreamJar />
               </div>
               <div className="flex min-w-0 flex-1 flex-col justify-between py-0.5">
-                <div className="hidden flex-wrap gap-1.5 md:flex">
+                <div className="hidden flex-wrap gap-1.5 xl:flex">
                   <span className="rounded-full border border-prune/25 px-2.5 py-1 font-display text-[0.7rem] leading-none lg:text-[0.75rem]">Le plus réservé</span>
                   <span className="rounded-full border border-prune/25 px-2.5 py-1 font-display text-[0.7rem] leading-none lg:text-[0.75rem]">Soin visage</span>
                 </div>
                 <div className="min-w-0">
-                  <h2 className="line-clamp-2 font-display text-[0.78rem] leading-tight sm:truncate tracking-[-0.02em] sm:text-[1.05rem] lg:text-[1.3rem]">
+                  <h2 className="line-clamp-2 font-display text-[0.78rem] leading-tight xl:truncate tracking-[-0.02em] sm:text-[1.05rem] lg:text-[1.3rem]">
                     <Link href={`/soins/${featured.slug}`} className="after:absolute after:inset-0 hover:underline hover:decoration-prune/40 hover:underline-offset-4">
                       {featured.nom}
                     </Link>
                   </h2>
-                  <p className="mt-0.5 hidden truncate text-[0.78rem] text-prune-soft md:block lg:text-[0.85rem]">
+                  <p className="mt-0.5 hidden truncate text-[0.85rem] text-prune-soft xl:block">
                     Acide hyaluronique · masque occlusif · {formatDuree(featured.duree)}
                   </p>
                   <p className="mt-0.5 font-serif text-[0.95rem] leading-none sm:text-[1.2rem] lg:mt-1 lg:text-[1.45rem]">{formatPrix(featured.prix)}</p>
@@ -288,7 +288,7 @@ export function Hero() {
       </div>
 
       {/* Bas gauche : horaires + entrée vers le quiz (desktop) */}
-      <div className={cn(s.aside, "absolute bottom-[6%] left-[calc(var(--spacing-gutter)+1rem)] z-30 hidden max-w-[18rem] md:block lg:max-w-[20rem]")}>
+      <div className={cn(s.aside, "absolute bottom-[6%] left-[calc(var(--spacing-gutter)+1rem)] z-30 hidden max-w-[20rem] xl:block")}>
         <p className="text-[0.95rem] leading-relaxed text-prune-soft">
           Sur rendez-vous, du mardi au samedi. Nocturne le jeudi jusqu&apos;à 20&nbsp;h&nbsp;30. {site.address.street}.
         </p>

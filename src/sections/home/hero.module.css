@@ -2,7 +2,7 @@
 
 .hero {
   --d: 1.05s; /* laisse le loader finir */
-  --P: min(90%, calc(100vw - 2rem)); /* hauteur du portrait */
+  --P: min(90%, calc(100vw - 2rem), 62svh); /* hauteur du portrait */
   --wm: min(19.6vw, 34svh); /* taille du mot-marque */
 }
 :global(html[data-seen]) .hero {
@@ -25,7 +25,10 @@
   /* mobile : au-dessus du portrait, la tête passe devant le bas des lettres */
   top: calc(100% - var(--P) - var(--wm) * 0.52);
 }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
+  .hero {
+    --P: min(90%, calc(100vw - 2rem), 58vw);
+  }
   .wordmark {
     /* tablette & desktop : à hauteur des yeux, comme la référence */
     top: calc(100% - var(--P) * 0.735);
