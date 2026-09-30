@@ -52,7 +52,7 @@ export default function FaqPage() {
               </Button>
               <a
                 href={site.contact.phoneHref}
-                className="inline-flex min-h-14 items-center rounded-full border border-lait/40 px-7 font-display transition-colors duration-[var(--dur-2)] hover:border-lait hover:bg-lait hover:text-prune sm:min-h-16"
+                className="inline-flex min-h-14 items-center rounded-full border border-lait/40 px-7 font-display transition-colors duration-[var(--dur-2)] hover:border-lait hover:bg-lait hover:text-prune sm:min-h-16 ease-[var(--ease-veil)]"
               >
                 {site.contact.phone}
               </a>

@@ -17,7 +17,7 @@ import { Tasse } from "@/features/contenu/institut/Tasse";
 export const metadata = pageMetadata({
   title: "L'institut · Cabine duo & tisanerie à Balaruc-les-Bains",
   description:
-    "Cabine duo, cabine visage, tisanerie de six places au cœur du quartier thermal de Balaruc-les-Bains. Nos produits, notre protocole d'hygiène, nos praticiennes.",
+    "Cabine duo, cabine visage et tisanerie au cœur du quartier thermal de Balaruc-les-Bains. Nos produits, notre protocole d'hygiène, nos praticiennes.",
   path: "/institut",
 });
 
@@ -269,7 +269,7 @@ export default function InstitutPage() {
             </Button>
             <Link
               href="/infos-pratiques"
-              className="inline-flex min-h-14 items-center rounded-full border border-lait/40 px-7 font-display transition-colors duration-[var(--dur-2)] hover:border-lait hover:bg-lait hover:text-prune sm:min-h-16"
+              className="inline-flex min-h-14 items-center rounded-full border border-lait/40 px-7 font-display transition-colors duration-[var(--dur-2)] hover:border-lait hover:bg-lait hover:text-prune sm:min-h-16 ease-[var(--ease-veil)]"
             >
               Accès & horaires
             </Link>

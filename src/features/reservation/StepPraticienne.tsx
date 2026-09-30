@@ -61,13 +61,13 @@ export function StepPraticienne({
                   aria-pressed={on}
                   onClick={() => onChoose(o)}
                   className={cn(
-                    "group flex w-full items-center gap-5 rounded-[var(--radius-card)] border p-4 text-left transition-[background-color,border-color,color,box-shadow] duration-[var(--dur-2)] ease-[var(--ease-veil)] sm:p-5",
+                    "group flex w-full items-center gap-4 rounded-[var(--radius-card)] sm:gap-5 border p-4 text-left transition-[background-color,border-color,color,box-shadow] duration-[var(--dur-2)] ease-[var(--ease-veil)] sm:p-5",
                     on ? "border-prune bg-prune text-lait shadow-[var(--shadow-veil)]" : "border-dashed border-prune/35 bg-ecume hover:border-solid hover:border-prune",
                   )}
                 >
-                  <span aria-hidden className="relative h-16 w-24 shrink-0">
-                    <Portrait initiale="C" teinte="argile" size="sm" className="absolute left-0 top-0 w-14 transition-transform duration-[var(--dur-3)] ease-[var(--ease-veil)] group-hover:-translate-x-1 group-hover:-rotate-6" />
-                    <Portrait initiale="I" teinte="sauge" size="sm" className="absolute left-9 top-1 w-14 transition-transform duration-[var(--dur-3)] ease-[var(--ease-veil)] group-hover:translate-x-1 group-hover:rotate-6" />
+                  <span aria-hidden className="relative h-12 w-[4.5rem] shrink-0 sm:h-16 sm:w-24">
+                    <Portrait initiale="C" teinte="argile" size="sm" className="absolute left-0 top-0 w-10 sm:w-14 transition-transform duration-[var(--dur-3)] ease-[var(--ease-veil)] group-hover:-translate-x-1 group-hover:-rotate-6" />
+                    <Portrait initiale="I" teinte="sauge" size="sm" className="absolute left-7 top-1 w-10 sm:left-9 sm:w-14 transition-transform duration-[var(--dur-3)] ease-[var(--ease-veil)] group-hover:translate-x-1 group-hover:rotate-6" />
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="block font-display text-[1.2rem] leading-tight">{o === "duo" ? "Clémence et Inès, ensemble" : "Peu importe"}</span>

@@ -114,9 +114,9 @@ function drawMotif(doc: Doc, d: CardData, GState: typeof import("jspdf").GState)
       opacity(1);
       doc.setFillColor(base);
       doc.ellipse(x, y, rx, ry, "F");
-      opacity(0.75);
+      opacity(0.45);
       doc.setFillColor(light);
-      doc.ellipse(x - rx * 0.18, y - ry * 0.28, rx * 0.62, ry * 0.5, "F");
+      doc.ellipse(x - rx * 0.2, y - ry * 0.32, rx * 0.6, ry * 0.46, "F");
       opacity(1);
     };
     pebble(92, 75, 19, 6.6, "#C9B6A2", "#F4EEE6");
@@ -199,7 +199,9 @@ export async function genererPdf(d: CardData) {
   doc.setFont(...f.medium);
   doc.setFontSize(6.5);
   doc.text("BON CADEAU", 13, 16, { charSpace: 0.9 });
-  doc.text(t(site.address.city.toUpperCase()), px + pw - 7, 16, { charSpace: 0.9, align: "right" });
+  // alignement à droite calculé à la main : jsPDF ignore l'interlettrage pour `align: "right"`
+  const ville = t(site.address.city.toUpperCase());
+  doc.text(ville, px + pw - 7 - (doc.getTextWidth(ville) + 0.9 * (ville.length - 1)), 16, { charSpace: 0.9 });
 
   if (d.estSoin) {
     doc.setFont(...f.serif);

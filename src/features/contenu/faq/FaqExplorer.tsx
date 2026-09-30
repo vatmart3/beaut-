@@ -184,7 +184,7 @@ function Item({ qr, open, onToggle, query, order }: { qr: QR; open: boolean; onT
           onClick={onToggle}
           className="group flex min-h-16 w-full items-start justify-between gap-6 py-5 text-left"
         >
-          <span className="font-display text-[clamp(1.1rem,1rem+0.4vw,1.35rem)] leading-snug transition-colors duration-[var(--dur-2)] group-hover:text-argile-deep">
+          <span className="font-display text-[clamp(1.1rem,1rem+0.4vw,1.35rem)] leading-snug transition-colors duration-[var(--dur-2)] group-hover:text-argile-deep ease-[var(--ease-veil)]">
             {highlight(qr.q, query)}
           </span>
           <span

@@ -158,7 +158,13 @@ export function valeurDuBon(d: Pick<GiftInput, "type" | "montant" | "soin" | "va
   const v = s.variantes?.find((x) => x.label === d.variante);
   const duree = v?.duree ?? s.duree;
   const prix = s.variantes ? (v?.prix ?? null) : s.prix;
-  const parts = [v && v.label !== s.nom ? v.label : null, formatDuree(duree), s.personnes === 2 ? "pour deux personnes" : null].filter(Boolean);
+  // « 90 minutes » dit déjà la durée : on ne la répète pas.
+  const labelDitDuree = !!v && /\bmin/.test(v.label);
+  const parts = [
+    v && v.label !== s.nom ? v.label : null,
+    labelDitDuree ? null : formatDuree(duree),
+    s.personnes === 2 ? "pour deux personnes" : null,
+  ].filter(Boolean);
   return { prix, titre: s.nom, detail: parts.join(" · "), soin: s };
 }
 

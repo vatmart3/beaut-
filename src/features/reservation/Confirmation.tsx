@@ -186,7 +186,7 @@ export function Confirmation({
         <button
           type="button"
           onClick={onReset}
-          className="inline-flex min-h-11 items-center gap-2 rounded-full px-4 font-display text-[0.95rem] text-prune-soft underline decoration-prune/25 underline-offset-4 transition-colors hover:text-prune hover:decoration-prune"
+          className="inline-flex min-h-11 items-center gap-2 rounded-full px-4 font-display text-[0.95rem] text-prune-soft underline decoration-prune/25 underline-offset-4 transition-colors hover:text-prune hover:decoration-prune duration-[var(--dur-2)] ease-[var(--ease-veil)]"
         >
           <Icon name="retour" size={16} />
           Faire une autre demande

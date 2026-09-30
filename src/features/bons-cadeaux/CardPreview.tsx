@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { motion } from "motion/react";
-import { Suspense, useCallback, useEffect, useRef, useState } from "react";
+import { Component, Suspense, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { Icon } from "@/components/icons/Icon";
 import { use3DCapable, useCoarsePointer, useReducedMotion } from "@/lib/device";
 import { ease } from "@/lib/motion";
@@ -10,6 +10,20 @@ import { cn } from "@/lib/cn";
 import { CARD_W, cardFonts, drawBack, drawFront, loadCardFonts, type CardData } from "./cardArt";
 
 const CardScene = dynamic(() => import("./CardScene"), { ssr: false });
+
+/** Si la scène WebGL échoue (contexte refusé, pilote), on retombe sur la carte CSS. */
+class SceneBoundary extends Component<{ onError: () => void; children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+  componentDidCatch() {
+    this.props.onError();
+  }
+  render() {
+    return this.state.failed ? null : this.props.children;
+  }
+}
 
 const side = (turns: number) => ((turns % 2) + 2) % 2;
 
@@ -106,7 +120,10 @@ export function CardPreview({
   landing?: boolean;
   className?: string;
 }) {
-  const can3D = use3DCapable();
+  const capable = use3DCapable();
+  const [failed, setFailed] = useState(false);
+  const can3D = capable && !failed;
+  const onError = useCallback(() => setFailed(true), []);
   const coarse = useCoarsePointer();
   const [turns, setTurns] = useState(0);
   const [ready, setReady] = useState(false);
@@ -119,11 +136,13 @@ export function CardPreview({
       <div aria-hidden className="relative aspect-[5/4] w-full">
         {!can3D || !ready ? <CardFallback data={data} turns={turns} onTurns={setTurns} landing={landing} /> : null}
         {can3D ? (
-          <Suspense fallback={null}>
-            <div className={cn("absolute inset-0 transition-opacity duration-700 ease-[var(--ease-veil)]", ready ? "opacity-100" : "opacity-0")}>
-              <CardScene data={data} turns={turns} onTurns={setTurns} landing={landing} onReady={onReady} />
-            </div>
-          </Suspense>
+          <SceneBoundary onError={onError}>
+            <Suspense fallback={null}>
+              <div className={cn("absolute inset-0 transition-opacity duration-700 ease-[var(--ease-veil)]", ready ? "opacity-100" : "opacity-0")}>
+                <CardScene data={data} turns={turns} onTurns={setTurns} landing={landing} onReady={onReady} />
+              </div>
+            </Suspense>
+          </SceneBoundary>
         ) : null}
       </div>
       <div className="mt-2 flex flex-wrap items-center justify-center gap-x-4 gap-y-2">

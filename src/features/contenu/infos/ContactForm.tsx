@@ -75,7 +75,7 @@ export function ContactForm() {
             <button
               type="button"
               onClick={() => setSent(null)}
-              className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full border border-prune/25 px-5 font-display text-[0.9rem] transition-colors hover:border-prune hover:bg-prune hover:text-lait"
+              className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full border border-prune/25 px-5 font-display text-[0.9rem] transition-colors hover:border-prune hover:bg-prune hover:text-lait duration-[var(--dur-2)] ease-[var(--ease-veil)]"
             >
               <Icon name="enveloppe" size={16} />
               Écrire un autre message

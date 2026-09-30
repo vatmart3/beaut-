@@ -60,7 +60,7 @@ function List({ data, reachable, onEdit, tone }: { data: RecapData; reachable: n
                   type="button"
                   onClick={() => onEdit(row.step)}
                   className={cn(
-                    "-my-2 min-h-11 rounded-full px-2 text-[0.8125rem] underline decoration-current/30 underline-offset-4 transition-colors hover:decoration-current",
+                    "-my-2 min-h-11 rounded-full px-2 text-[0.8125rem] underline decoration-current/30 underline-offset-4 transition-colors hover:decoration-current duration-[var(--dur-2)] ease-[var(--ease-veil)]",
                     tone === "prune" ? "text-argile" : "text-argile-deep",
                   )}
                 >
@@ -107,9 +107,9 @@ export function RecapDrawer({ data, reachable, onEdit }: { data: RecapData; reac
   const reduced = useReducedMotion();
   const panelId = useId();
 
-  // La barre « Actions rapides » (StickyCta) apparaît après 280 px de défilement.
+  // La barre « Actions rapides » (StickyCta, mobile < md) apparaît après 280 px de défilement.
   useEffect(() => {
-    const on = () => setLifted(window.scrollY > 280);
+    const on = () => setLifted(window.scrollY > 280 && window.innerWidth < 768);
     const id = requestAnimationFrame(on);
     window.addEventListener("scroll", on, { passive: true });
     return () => {
@@ -130,9 +130,9 @@ export function RecapDrawer({ data, reachable, onEdit }: { data: RecapData; reac
 
   return (
     <motion.div
-      className="fixed inset-x-3 z-[41] lg:hidden"
+      className="fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-[41] md:inset-x-auto md:right-5 md:w-[26rem] lg:hidden"
       initial={reduced ? { opacity: 0 } : { y: 40, opacity: 0 }}
-      animate={{ y: 0, opacity: 1, bottom: lifted ? "calc(max(0.75rem, env(safe-area-inset-bottom)) + 4.25rem)" : "max(0.75rem, env(safe-area-inset-bottom))" }}
+      animate={{ y: lifted ? -68 : 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: ease.veil }}
     >
       <div className="overflow-hidden rounded-[var(--radius-card)] bg-prune text-lait shadow-[var(--shadow-float)]">

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
-import { Suspense, useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useState, type ChangeEvent } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { site } from "@/config/site";
@@ -34,6 +34,7 @@ import {
   type GiftInput,
   type GiftValues,
 } from "./model";
+import { OFFRIR_EVENT } from "./sections";
 import { SuccessPanel, type Done } from "./SuccessPanel";
 import { Drop, MotifMini, RadioCard, Step } from "./ui";
 import { useTodayKey } from "./useToday";
@@ -75,7 +76,7 @@ export function describeCard(d: CardData) {
   ].join(" ");
 }
 
-const errorOrder: (keyof GiftInput)[] = ["montant", "soin", "variante", "de", "pour", "message", "emailDestinataire", "dateEnvoi", "emailAcheteur", "telephone", "cgv"];
+const errorOrder: (keyof GiftInput)[] = ["montant", "soin", "variante", "de", "pour", "message", "emailDestinataire", "dateEnvoi", "emailAcheteur", "telephone", "cgv", "code"];
 const errorLabels: Partial<Record<keyof GiftInput, string>> = {
   montant: "le montant",
   soin: "le soin",
@@ -88,12 +89,12 @@ const errorLabels: Partial<Record<keyof GiftInput, string>> = {
   emailAcheteur: "votre e-mail",
   telephone: "votre téléphone",
   cgv: "les conditions de vente",
+  code: "le code du bon (rechargez la page)",
 };
 
 export function GiftConfigurator() {
   const reduced = useReducedMotion();
   const today = useTodayKey();
-  const sectionRef = useRef<HTMLElement>(null);
   const [categorie, setCategorie] = useState<CategorieId>("visage");
   const [serverError, setServerError] = useState("");
   const [done, setDone] = useState<Done | null>(null);
@@ -141,6 +142,16 @@ export function GiftConfigurator() {
     [setValue],
   );
 
+  useEffect(() => {
+    const onOffrir = (e: Event) => {
+      const slug = (e as CustomEvent<string>).detail;
+      setDone(null);
+      applySoin(slug);
+    };
+    window.addEventListener(OFFRIR_EVENT, onOffrir);
+    return () => window.removeEventListener(OFFRIR_EVENT, onOffrir);
+  }, [applySoin]);
+
   const validate = submitCount > 0;
   const setMontant = (n: number) => setValue("montant", String(n), { shouldValidate: validate, shouldDirty: true });
 
@@ -183,7 +194,7 @@ export function GiftConfigurator() {
         }
       }
       setDone({ values, card, prix: valeurDuBon(values).prix, demo: !!json.demo, scheduledAt: json.scheduledAt ?? null, pdfError });
-      requestAnimationFrame(() => sectionRef.current?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" }));
+      requestAnimationFrame(() => document.getElementById("composer")?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" }));
     } catch {
       setServerError(`Connexion impossible. Vérifiez votre réseau, ou appelez-nous au ${site.contact.phone}.`);
     }
@@ -193,7 +204,7 @@ export function GiftConfigurator() {
     reset({ ...giftDefaults, code: genererCode() });
     setDone(null);
     setServerError("");
-    requestAnimationFrame(() => sectionRef.current?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" }));
+    requestAnimationFrame(() => document.getElementById("composer")?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" }));
   };
 
   const soinsCategorie = soins.filter((s) => s.categorie === categorie);
@@ -202,7 +213,6 @@ export function GiftConfigurator() {
 
   return (
     <section
-      ref={sectionRef}
       id="composer"
       aria-labelledby={done ? "bon-succes-titre" : "composer-titre"}
       className="shell relative scroll-mt-4 px-5 py-14 sm:px-10 sm:py-16 lg:px-16 lg:py-20"
@@ -519,6 +529,7 @@ export function GiftConfigurator() {
                     </div>
                   </div>
 
+                  <input type="hidden" {...register("code")} />
                   {/* Champ piège : invisible pour les humains */}
                   <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
                     <label>

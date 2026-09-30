@@ -45,7 +45,7 @@ export function DropProgress({
               <Drop level={state === "done" ? 1 : state === "current" ? 0.5 : i <= reachable ? 0.15 : 0} active={state === "current"} />
               <span className="mt-2 flex flex-col items-center leading-tight">
                 <span className="tabular font-serif text-[0.8rem] text-prune-mute">{String(i + 1).padStart(2, "0")}</span>
-                <span className={cn("font-display text-[0.8125rem] sm:text-[0.9rem]", state === "todo" ? "text-prune-mute" : "text-prune")}>{label}</span>
+                <span className={cn("font-display text-[0.75rem] sm:text-[0.9rem]", state === "todo" ? "text-prune-mute" : "text-prune")}>{label}</span>
               </span>
             </>
           );

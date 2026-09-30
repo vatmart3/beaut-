@@ -8,6 +8,9 @@ import { useReducedMotion } from "@/lib/device";
 import { ease } from "@/lib/motion";
 import { cn } from "@/lib/cn";
 
+/** Événement émis par les liens « Offrir » de la page (présélection d'un soin). */
+export const OFFRIR_EVENT = "brume:offrir";
+
 /** Liste dont chaque ligne trace d'abord son filet, puis fait monter son texte. */
 export function DrawnList({ items }: { items: { icon: IconName; title: string; text: ReactNode }[] }) {
   const reduced = useReducedMotion();
@@ -159,8 +162,12 @@ export function BudgetItem({ slug, nom, detail, prix }: { slug: string; nom: str
       </div>
       <Link
         href={`/bons-cadeaux?soin=${slug}#composer`}
-        scroll={false}
-        onClick={() => {
+        onClick={(e) => {
+          // Même page : pas de navigation (qui remonterait le formulaire), on présélectionne et on remonte.
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+          e.preventDefault();
+          window.history.replaceState(null, "", `/bons-cadeaux?soin=${slug}`);
+          window.dispatchEvent(new CustomEvent(OFFRIR_EVENT, { detail: slug }));
           document.getElementById("composer")?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
         }}
         aria-label={`Offrir le soin ${nom}`}

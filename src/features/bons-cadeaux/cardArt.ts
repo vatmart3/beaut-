@@ -189,30 +189,34 @@ function blob(ctx: Ctx, cx: number, cy: number, r: number, seed: number, fill: s
 }
 
 /** Dessine le motif décoratif. `scale` < 1 pour l'écho discret du verso. */
-function drawMotif(ctx: Ctx, motif: MotifId, x: number, y: number, scale = 1) {
+function drawMotif(ctx: Ctx, motif: MotifId, x: number, y: number, scale = 1, onPaper = false) {
   const m = motifDe(motif);
   ctx.save();
   ctx.translate(x, y);
   ctx.scale(scale, scale);
   if (motif === "galets") {
     pebble(ctx, 0, 250, 260, 92, ["#FFFDFA", "#D9CBBB", "#A89786"], -0.03);
-    pebble(ctx, -18, 92, 196, 70, ["#F1F4EF", "#B8C6B5", "#7F917C"], 0.04);
-    pebble(ctx, 22, -38, 134, 50, ["#7A6570", "#3B2A33", "#23191F"], -0.05);
+    pebble(ctx, -18, 128, 196, 70, ["#F1F4EF", "#B8C6B5", "#7F917C"], 0.04);
+    pebble(ctx, 22, 30, 134, 50, ["#7A6570", "#3B2A33", "#23191F"], -0.05);
   } else if (motif === "brume") {
-    const glow = ctx.createRadialGradient(0, 0, 0, 0, 0, 520);
-    glow.addColorStop(0, rgba("#FAF6F1", 0.5));
-    glow.addColorStop(1, rgba("#FAF6F1", 0));
-    ctx.fillStyle = glow;
-    ctx.fillRect(-620, -520, 1240, 1040);
+    // sur le papier clair du verso, l'onde prend la couleur de la sauge
+    const line = onPaper ? "#7F917C" : m.accent;
+    if (!onPaper) {
+      const glow = ctx.createRadialGradient(0, 0, 0, 0, 0, 520);
+      glow.addColorStop(0, rgba("#FAF6F1", 0.5));
+      glow.addColorStop(1, rgba("#FAF6F1", 0));
+      ctx.fillStyle = glow;
+      ctx.fillRect(-620, -520, 1240, 1040);
+    }
     [36, 84, 146, 222, 312, 416, 534, 666].forEach((r, i) => {
-      ctx.strokeStyle = rgba(m.accent, Math.max(0.12, 0.85 - i * 0.1));
+      ctx.strokeStyle = rgba(line, Math.max(0.12, 0.85 - i * 0.1));
       ctx.lineWidth = 3.2 - i * 0.22;
       ctx.beginPath();
       ctx.ellipse(0, 0, r, r * 0.34, 0, 0, Math.PI * 2);
       ctx.stroke();
     });
     // la goutte qui a fait l'onde
-    ctx.fillStyle = rgba("#FAF6F1", 0.95);
+    ctx.fillStyle = onPaper ? "#9CAF9A" : rgba("#FAF6F1", 0.95);
     ctx.beginPath();
     ctx.moveTo(0, -250);
     ctx.bezierCurveTo(26, -206, 44, -176, 44, -150);
@@ -251,7 +255,7 @@ export function drawFront(ctx: Ctx, d: CardData, f: CardFonts) {
   ctx.fillRect(0, 0, CARD_W, CARD_H);
 
   if (d.motif === "brume") drawMotif(ctx, "brume", 1180, 640);
-  else if (d.motif === "galets") drawMotif(ctx, "galets", 1255, 470);
+  else if (d.motif === "galets") drawMotif(ctx, "galets", 1255, 440);
   else drawMotif(ctx, "argile", 1260, 560);
 
   grain(ctx, ink, 0.07, 3);
@@ -317,7 +321,7 @@ export function drawBack(ctx: Ctx, d: CardData, f: CardFonts) {
   ctx.save();
   ctx.clip();
   ctx.globalAlpha = 0.85;
-  drawMotif(ctx, d.motif, 1400, 770, 0.26);
+  drawMotif(ctx, d.motif, 1400, 770, 0.26, !dark);
   ctx.restore();
   grain(ctx, "#3B2A33", 0.04, 9);
 

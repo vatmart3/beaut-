@@ -22,7 +22,6 @@ export function OpenStatus({ tone = "light" }: { tone?: "light" | "dark" }) {
         "inline-flex min-h-10 items-center gap-2.5 rounded-full border px-4 text-[0.9rem]",
         tone === "light" ? "border-prune/20 bg-ecume" : "border-lait/25 text-lait",
       )}
-      aria-live="polite"
     >
       <span className="relative grid size-2.5 place-items-center" aria-hidden>
         {st?.open && !reduced ? <span className="absolute inset-0 animate-ping rounded-full bg-sauge opacity-60" /> : null}

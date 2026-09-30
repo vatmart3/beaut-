@@ -31,7 +31,7 @@ export const coordonneesSchema = z.object({
   }),
   annulation: z.boolean().refine((v) => v, "Merci de confirmer avoir lu les conditions d'annulation."),
   /** Pot de miel anti-robots : doit rester vide. */
-  site: z.string().max(0),
+  site: z.string().max(0, "Ce champ doit rester vide."),
 });
 
 /** Étapes 1 à 3 — la sélection. */

@@ -112,7 +112,7 @@ export default function InfosPratiquesPage() {
       {/* ——— Accès & stationnement */}
       <section className="shell grain overflow-hidden bg-sable px-5 py-14 sm:px-10 lg:px-16 lg:py-24">
         <div className="relative z-[2] grid gap-12 lg:grid-cols-12">
-          <SectionTitle eyebrow="Accès & stationnement" title="Se garer sans chercher" className="lg:col-span-5" />
+          <SectionTitle eyebrow="Accès & stationnement" title="Arriver sans chercher" className="lg:col-span-5" />
           <ol className="lg:col-span-6 lg:col-start-7">
             {address.access.map((a, i) => (
               <li key={a} className="border-t border-prune/15 first:border-t-0">

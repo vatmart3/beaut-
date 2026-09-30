@@ -111,7 +111,7 @@ export function ThauMap({ children }: { children?: ReactNode }) {
                     width="60"
                     height="26"
                     rx="13"
-                    className={cn("transition-colors duration-[var(--dur-2)]", actif === t.ville ? "fill-prune" : "fill-ecume")}
+                    className={cn("transition-colors duration-[var(--dur-2)] ease-[var(--ease-veil)]", actif === t.ville ? "fill-prune" : "fill-ecume")}
                     stroke="#3B2A33"
                     strokeOpacity="0.2"
                   />
@@ -120,7 +120,7 @@ export function ThauMap({ children }: { children?: ReactNode }) {
                     y={t.label!.y + 4}
                     textAnchor="middle"
                     fontSize="12.5"
-                    className={cn("font-display transition-colors duration-[var(--dur-2)]", actif === t.ville ? "fill-lait" : "fill-prune")}
+                    className={cn("font-display transition-colors duration-[var(--dur-2)] ease-[var(--ease-veil)]", actif === t.ville ? "fill-lait" : "fill-prune")}
                   >
                     {t.minutes} min
                   </text>
@@ -139,7 +139,7 @@ export function ThauMap({ children }: { children?: ReactNode }) {
                   transition={{ duration: 0.7, delay: reduced ? 0 : 1 + i * 0.1, ease: ease.veil }}
                   style={{ transformOrigin: `${t.x}px ${t.y}px` }}
                 >
-                  <circle cx={t.x} cy={t.y} r={actif === t.ville ? 6 : 4} className="fill-prune transition-[r] duration-[var(--dur-2)]" />
+                  <circle cx={t.x} cy={t.y} r={actif === t.ville ? 6 : 4} className="fill-prune transition-[r] duration-[var(--dur-2)] ease-[var(--ease-veil)]" />
                   <text
                     x={t.x! + (gauche(t.ville) ? -10 : 10)}
                     y={t.y! + (t.ville === "Sète" ? 18 : -8)}
@@ -228,7 +228,7 @@ export function ThauMap({ children }: { children?: ReactNode }) {
                 onMouseEnter={() => setActif(t.ville)}
                 onFocus={() => setActif(t.ville)}
                 onBlur={() => setActif(null)}
-                className="group flex min-h-12 items-center gap-4 py-3 transition-colors duration-[var(--dur-2)]"
+                className="group flex min-h-12 items-center gap-4 py-3 transition-colors duration-[var(--dur-2)] ease-[var(--ease-veil)]"
               >
                 <span className="tabular w-16 shrink-0 font-serif text-[1.35rem] leading-none text-argile-deep">
                   {t.minutes}
@@ -238,7 +238,7 @@ export function ThauMap({ children }: { children?: ReactNode }) {
                   <span className="block font-display">{t.ville}</span>
                   {t.via ? <span className="block text-[0.8125rem] text-prune-mute">{t.via}</span> : null}
                 </span>
-                <span className="flex items-center gap-1.5 text-[0.8125rem] text-prune-mute transition-colors group-hover:text-prune">
+                <span className="flex items-center gap-1.5 text-[0.8125rem] text-prune-mute transition-colors group-hover:text-prune duration-[var(--dur-2)] ease-[var(--ease-veil)]">
                   <span className="hidden sm:inline">Itinéraire</span>
                   <Icon name="fleche" size={16} className="transition-transform duration-[var(--dur-3)] ease-[var(--ease-veil)] group-hover:translate-x-1" />
                   <span className="sr-only">depuis {t.ville} (nouvel onglet)</span>

@@ -19,7 +19,7 @@ export const contactSchema = z.object({
   sujet: z.enum(["soin", "rendez-vous", "cadeau", "autre"], { message: "Choisissez un sujet." }),
   message: z.string().trim().min(10, "Quelques mots de plus : 10 caractères minimum.").max(2000, "2 000 caractères maximum."),
   /** Pot de miel anti-robots. */
-  site: z.string().max(0),
+  site: z.string().max(0, "Ce champ doit rester vide."),
 });
 
 export type ContactValues = z.infer<typeof contactSchema>;
