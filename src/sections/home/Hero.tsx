@@ -276,7 +276,7 @@ export function Hero() {
               <Link
                 href={`/reserver?soin=${featured.slug}`}
                 aria-label={`Réserver le soin ${featured.nom}`}
-                className="relative z-10 grid size-8 shrink-0 place-items-center self-start rounded-full bg-ecume text-prune shadow-[var(--shadow-veil)] transition-[transform,background-color,color] duration-[var(--dur-2)] ease-[var(--ease-veil)] hover:rotate-90 hover:bg-prune hover:text-lait sm:size-10"
+                className="relative z-10 grid size-10 shrink-0 place-items-center self-start rounded-full bg-ecume text-prune shadow-[var(--shadow-veil)] transition-[transform,background-color,color] duration-[var(--dur-2)] ease-[var(--ease-veil)] hover:rotate-90 hover:bg-prune hover:text-lait sm:size-10"
               >
                 <Icon name="plus" size={18} />
               </Link>

@@ -50,9 +50,9 @@ export function StepCreneau({
   const mois = Array.from(new Set(cal.map((j) => j.date.toLocaleDateString("fr-FR", { month: "long", year: "numeric" }))));
 
   return (
-    <div className="grid gap-8 xl:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] xl:gap-10">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-8 xl:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] xl:gap-10">
       {/* Calendrier */}
-      <div>
+      <div className="min-w-0">
         <div className="flex items-baseline justify-between gap-4">
           <p className="font-display text-[1.1rem] capitalize">{mois.join(" — ")}</p>
           <p className="text-[0.8125rem] text-prune-mute">3 semaines</p>

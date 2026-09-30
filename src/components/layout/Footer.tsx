@@ -38,7 +38,7 @@ export function Footer() {
                 <br />
                 {site.address.postalCode} {site.address.city}
                 <br />
-                <a href={`mailto:${site.contact.email}`} className="underline decoration-lait/30 underline-offset-4 hover:decoration-lait">
+                <a href={`mailto:${site.contact.email}`} className="inline-flex min-h-10 items-center underline decoration-lait/30 underline-offset-4 hover:decoration-lait sm:min-h-0">
                   {site.contact.email}
                 </a>
               </address>
@@ -56,16 +56,16 @@ export function Footer() {
             </div>
             <div>
               <h2 className="eyebrow text-lait/60">Rubriques</h2>
-              <ul className="mt-4 space-y-1.5">
+              <ul className="mt-3 sm:mt-4 sm:space-y-1.5">
                 {nav.map((n) => (
                   <li key={n.href}>
-                    <Link href={n.href} className="text-lait/90 underline-offset-4 hover:underline">
+                    <Link href={n.href} className="inline-flex min-h-10 items-center text-lait/90 underline-offset-4 hover:underline sm:min-h-0">
                       {n.label}
                     </Link>
                   </li>
                 ))}
                 <li>
-                  <Link href="/conseils/routine-peau-apres-la-mer" className="text-lait/90 underline-offset-4 hover:underline">
+                  <Link href="/conseils/routine-peau-apres-la-mer" className="inline-flex min-h-10 items-center text-lait/90 underline-offset-4 hover:underline sm:min-h-0">
                     Fiche conseil offerte
                   </Link>
                 </li>
@@ -82,7 +82,7 @@ export function Footer() {
           <p>
             © {year} {site.name} · Institut de beauté à {site.address.city}, Bassin de Thau
           </p>
-          <ul className="flex flex-wrap gap-x-5 gap-y-2">
+          <ul className="flex flex-wrap gap-x-5 [&_a]:inline-flex [&_a]:min-h-10 [&_a]:items-center [&_button]:min-h-10 sm:[&_a]:min-h-0 sm:[&_button]:min-h-0">
             <li>
               <Link href="/mentions-legales" className="hover:text-lait">Mentions légales</Link>
             </li>
@@ -96,7 +96,7 @@ export function Footer() {
               <CookieSettingsButton className="hover:text-lait" />
             </li>
           </ul>
-          <a href={site.agency.url} target="_blank" rel="noopener" className="group inline-flex items-center gap-2 text-lait/70 hover:text-lait">
+          <a href={site.agency.url} target="_blank" rel="noopener" className="group inline-flex min-h-10 items-center gap-2 text-lait/70 hover:text-lait sm:min-h-0">
             <span aria-hidden className="inline-block size-1.5 rounded-full bg-argile transition-transform duration-500 group-hover:scale-[2.2]" />
             {site.agency.label}
           </a>

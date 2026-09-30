@@ -23,8 +23,48 @@ export function Comparatif() {
   });
 
   return (
-    <div className="relative -mx-5 sm:mx-0">
-      <div className="overflow-x-auto px-5 pb-2 sm:px-0" role="region" aria-labelledby="comparatif-legende" tabIndex={0}>
+    <>
+    {/* Mobile : une carte par soin, rien à faire défiler */}
+    <div className="space-y-3 sm:hidden">
+      <p className="text-caption text-prune-mute">Prix TTC par personne, comparés au prix d&rsquo;une séance seule.</p>
+      {lignes.map(({ soin, c3, c5 }) => (
+        <article key={soin.slug} className="rounded-[var(--radius-card)] border hairline bg-ecume p-5">
+          <h3 className="font-display text-[1.2rem] font-light leading-tight">
+            <Link href={`/soins/${soin.slug}`} className="underline decoration-prune/20 underline-offset-4">
+              {soin.nom}
+            </Link>
+          </h3>
+          <dl className="mt-4 grid gap-2 text-[0.9rem]">
+            <div className="flex items-baseline justify-between gap-3">
+              <dt className="text-prune-soft">Séance seule</dt>
+              <dd className="tabular font-serif text-[1.2rem]">{formatPrix(soin.prix)}</dd>
+            </div>
+            {[
+              { label: "Cure 3 séances", c: c3 },
+              { label: "Cure 5 séances", c: c5 },
+            ]
+              .filter((x) => x.c)
+              .map(({ label, c }) => (
+                <div key={label} className={cn("flex items-baseline justify-between gap-3 rounded-[var(--radius-soft)] px-3 py-2.5 -mx-3", label.includes("5") && "bg-sauge-pale")}>
+                  <dt>
+                    <span className="block">{label}</span>
+                    <span className="tabular text-caption text-prune-soft">
+                      {formatPrix(c!.parSeance)} la séance · <span className="text-sauge-deep">−&nbsp;{formatPrix(c!.economie)}</span>
+                    </span>
+                  </dt>
+                  <dd className="tabular font-serif text-[1.2rem]">{formatPrix(c!.prix)}</dd>
+                </div>
+              ))}
+          </dl>
+        </article>
+      ))}
+      <ul className="space-y-1.5 pt-2 text-[0.9rem] text-prune-soft">
+        <li>— Cures valables 6 mois, nominatives, réglées sur place à la 1re séance.</li>
+        <li>— Offertes en bon cadeau, elles restent valables {site.policies.giftValidityMonths} mois.</li>
+      </ul>
+    </div>
+    <div className="relative hidden sm:block">
+      <div className="overflow-x-auto pb-2" role="region" aria-labelledby="comparatif-legende" tabIndex={0}>
         <table className="w-full min-w-[40rem] border-collapse text-left">
           <caption id="comparatif-legende" className="pb-6 text-left text-caption text-prune-mute">
             Prix TTC par personne. L&rsquo;économie est calculée par rapport au prix d&rsquo;une séance seule multiplié par le nombre de séances.
@@ -106,9 +146,7 @@ export function Comparatif() {
           </tbody>
         </table>
       </div>
-      <p className="mt-3 px-5 text-caption text-prune-mute sm:hidden" aria-hidden>
-        Faites glisser le tableau vers la gauche pour voir les cures.
-      </p>
     </div>
+    </>
   );
 }
