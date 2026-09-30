@@ -85,7 +85,7 @@ function paintWordmark(canvas: HTMLCanvasElement, shell: HTMLElement, word: HTML
 function Scene({ shell, word, pointer, progress, home, lite, onReady }: Props) {
   const { size, viewport, invalidate } = useThree();
   const drop = useRef<THREE.Mesh>(null);
-  const geometry = useMemo(makeDropGeometry, []);
+  const geometry = useMemo(() => makeDropGeometry(), []);
   const canvas2d = useMemo(() => document.createElement("canvas"), []);
   const texture = useMemo(() => {
     const t = new THREE.CanvasTexture(canvas2d);

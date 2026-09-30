@@ -10,7 +10,7 @@ export function Footer() {
       <div className="shell grain overflow-hidden bg-prune px-6 pb-8 pt-16 text-lait sm:px-10 lg:px-16 lg:pt-24">
         <div className="relative z-[2] grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-6">
-            <p className="font-serif text-[clamp(2rem,1.2rem+3vw,3.75rem)] leading-[1.05] tracking-[-0.01em]">
+            <p className="font-display text-[clamp(2rem,1.2rem+3vw,3.75rem)] font-light leading-[1.05] tracking-[-0.04em]">
               4 rue des Sources.
               <br />
               <span className="text-argile">À quatre minutes à pied des thermes.</span>
@@ -28,7 +28,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-3 lg:col-span-6">
+          <div className="grid gap-10 sm:grid-cols-[1fr_1.25fr_0.9fr] lg:col-span-6">
             <div>
               <h2 className="eyebrow text-lait/60">Institut</h2>
               <address className="mt-4 not-italic leading-relaxed text-lait/90">
@@ -47,9 +47,9 @@ export function Footer() {
               <h2 className="eyebrow text-lait/60">Horaires</h2>
               <dl className="mt-4 space-y-1.5 text-lait/90">
                 {hoursGrouped().map((g) => (
-                  <div key={g.jours} className="flex justify-between gap-4">
-                    <dt>{g.jours}</dt>
-                    <dd className="tabular text-right">{g.plages}</dd>
+                  <div key={g.jours} className="flex justify-between gap-3">
+                    <dt className="whitespace-nowrap">{g.jours}</dt>
+                    <dd className="tabular whitespace-nowrap text-right">{g.plages}</dd>
                   </div>
                 ))}
               </dl>

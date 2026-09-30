@@ -109,7 +109,6 @@ export function Hero() {
       pointer.current = { x: 0.5 + g / 70, y: (b - 10) / 70, active: true };
     };
     window.addEventListener("deviceorientation", onOrient);
-    setTilt("on");
     return () => window.removeEventListener("deviceorientation", onOrient);
   }, []);
 
@@ -127,7 +126,10 @@ export function Hero() {
     const DOE = window.DeviceOrientationEvent as unknown as { requestPermission?: () => Promise<"granted" | "denied"> };
     try {
       const res = await DOE.requestPermission?.();
-      if (res === "granted") startTilt();
+      if (res === "granted") {
+        startTilt();
+        setTilt("on");
+      }
       else setTilt("idle");
     } catch {
       setTilt("idle");

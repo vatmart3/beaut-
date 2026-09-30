@@ -60,7 +60,7 @@ export function Header() {
       </a>
       <motion.header
         className="fixed inset-x-0 top-0 z-50"
-        animate={{ y: hidden && !open ? "-120%" : "0%" }}
+        animate={{ y: hidden && !open ? "-180%" : "0%" }}
         transition={{ duration: 0.5, ease: ease.veil }}
       >
         <div className="frame pt-3 sm:pt-4">
