@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BRUME — Institut de soins · Balaruc-les-Bains
 
-## Getting Started
+Site vitrine de démonstration — portfolio **MJAGENCY** (site 05/10).
+Marque fictive traitée comme un vrai client : soins visage et corps, épilations,
+beauté des mains et des pieds, rituels en cabine duo.
 
-First, run the development server:
+- Next.js 16 (App Router, Turbopack) · React 19 · TypeScript strict
+- Tailwind CSS v4 (tokens du design system dans `src/app/globals.css`)
+- Motion · GSAP + ScrollTrigger · Lenis
+- React Three Fiber + drei (goutte de verre 3D, carte cadeau 3D)
+- react-hook-form + zod · Resend (facultatif) · jsPDF
+
+---
+
+## Lancer le projet
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # build de production (doit passer sans erreur ni warning)
+npm run start      # sert le build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Node.js 20.9 ou plus récent.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Déployer sur Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Poussez le dépôt sur GitHub, puis « Add New… › Project » sur vercel.com et
+   importez-le. Aucun réglage de build n'est nécessaire (framework détecté).
+2. Variables d'environnement (Settings › Environment Variables), voir `.env.example` :
+   - `NEXT_PUBLIC_SITE_URL` — l'URL définitive (canonical, sitemap, Open Graph).
+   - `RESEND_API_KEY`, `MAIL_FROM`, `MAIL_TO` — pour recevoir réellement les
+     demandes de réservation, bons cadeaux et contact. **Sans clé, le site
+     fonctionne en mode démo** : les formulaires valident, affichent leur écran de
+     succès, et le contenu est journalisé côté serveur (onglet « Logs » de Vercel).
+3. Ajoutez le nom de domaine (Settings › Domains) puis mettez à jour
+   `NEXT_PUBLIC_SITE_URL`.
 
-## Learn More
+## Modifier le contenu (un seul dossier pour le client)
 
-To learn more about Next.js, take a look at the following resources:
+| Quoi | Où |
+|---|---|
+| Nom, adresse, téléphone, e-mail, horaires, zone desservie, politique d'annulation, mentions légales | `src/config/site.ts` |
+| Soins (prix, durées, déroulé minute par minute, contre-indications, conseils) | `src/data/soins.ts` |
+| Cures 3 / 5 séances (l'économie est calculée automatiquement) | `src/data/rituels.ts` |
+| Praticiennes | `src/data/praticiennes.ts` |
+| Planning, pause déjeuner, fermetures exceptionnelles | `src/data/planning.ts` |
+| Quiz « Votre rituel » (questions et calcul) | `src/data/quiz.ts` |
+| Bons cadeaux (motifs, montants, occasions saisonnières) | `src/data/bons-cadeaux.ts` |
+| Avis clients (**démo : à remplacer par les vrais avis**) et chiffres | `src/data/avis.ts` |
+| FAQ | `src/data/faq.ts` |
+| Le lieu, produits, protocole d'hygiène | `src/data/institut.ts` |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Le NAP (nom, adresse, téléphone) est lu partout depuis `site.ts` : footer, menu,
+pages, JSON-LD — il reste identique sur tout le site.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Images
 
-## Deploy on Vercel
+- Le portrait du hero est `public/images/hero-portrait.png` (PNG détouré). Il s'agit
+  d'un **placeholder dont les droits ne sont pas établis** : remplacez-le avant la
+  mise en ligne (prompt et format exacts dans `ASSETS.md`). Si le cadrage change,
+  ajustez dans `src/sections/home/Hero.tsx` la position du point sur la joue
+  (`left-[54.9%] top-[33.6%]`), le tracé du trait (`d="M368 236 …"`) et la carte soin.
+- Les autres visuels sont procéduraux (`src/components/ui/Matiere.tsx`) : pour mettre
+  de vraies photos, remplacez `<Matiere …/>` par `next/image` avec les mêmes ratios.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Planning réel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`src/data/planning.ts` simule l'occupation de façon déterministe. Pour un vrai
+client, remplacez `estPris()` par un appel à l'outil de réservation utilisé
+(Planity, Kalendes, Google Agenda, base de données…).
+
+## Architecture
+
+```
+src/
+  app/                 routes (App Router), metadata, opengraph-image par page, API
+  config/site.ts       coordonnées & réglages client
+  data/                contenus métier
+  components/
+    layout/            header en pastilles, menu « galets », footer, loader, cookies, CTA mobile, transitions
+    ui/                boutons magnétiques, pastilles, champs de formulaire, visuels « matières »
+    effects/           révélations (masques, clip-path, ondulation), onde shader, compteurs
+    three/             goutte de verre (R3F)
+    icons/             icônes dessinées sur mesure
+  sections/home/       sections de l'accueil
+  features/            modules métier (soins, bons cadeaux, réservation, contenus)
+  lib/                 SEO/JSON-LD, OG, e-mail, horaires, easings, détection 3D
+```
+
+## Performance & accessibilité
+
+- La 3D est chargée en différé (`next/dynamic`, `ssr: false`) et remplacée par une
+  goutte SVG si WebGL est absent, si `prefers-reduced-motion` est actif ou si
+  l'appareil est modeste (`hardwareConcurrency` ≤ 4 ou `deviceMemory` ≤ 4).
+  `dpr` plafonné à 1,5 ; rendu suspendu quand le hero sort de l'écran.
+- La séquence d'entrée du hero et le loader sont en CSS pur : ils ne dépendent pas
+  de l'hydratation (LCP rapide). Le loader n'apparaît qu'une fois par session.
+- `prefers-reduced-motion` : Lenis désactivé, animations remplacées par des fondus.
+- Contrastes AA vérifiés sur les tokens, focus visible, navigation clavier complète,
+  cibles tactiles ≥ 44 px.
+
+## Crédits
+
+Site concept — design & développement **MJAGENCY** · https://mjagency.eu
