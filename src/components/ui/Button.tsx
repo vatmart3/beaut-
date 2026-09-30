@@ -14,7 +14,7 @@ const base =
   "group/btn relative inline-flex select-none items-center justify-center gap-3 rounded-full font-display font-normal tracking-[-0.01em] whitespace-nowrap transition-[background-color,color,border-color,box-shadow] duration-[var(--dur-2)] ease-[var(--ease-veil)] disabled:pointer-events-none disabled:opacity-45";
 
 const variants: Record<Variant, string> = {
-  solid: "bg-prune text-lait hover:bg-[#2c1f26] active:bg-[#23191f]",
+  solid: "bg-prune text-lait hover:bg-[#000000] active:bg-[#000000]",
   outline: "border border-prune/70 text-prune hover:bg-prune hover:text-lait",
   soft: "bg-sable text-prune hover:bg-argile-pale",
   ghost: "text-prune hover:bg-prune/5",

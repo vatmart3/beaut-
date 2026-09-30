@@ -31,18 +31,18 @@ function DropProgress({ step, total }: { step: number; total: number }) {
               </clipPath>
             </defs>
             <g clipPath={`url(#d${id}${i})`}>
-              <rect width="24" height="32" fill="#FFFDFA" />
+              <rect width="24" height="32" fill="#FFFFFF" />
               <motion.rect
                 x="0"
                 width="24"
                 height="32"
-                fill="#3B2A33"
+                fill="#221B1D"
                 initial={false}
                 animate={{ y: filled ? 0 : current ? 22 : 32 }}
                 transition={{ duration: 0.9, ease: ease.veil }}
               />
             </g>
-            <path d="M12 1.5c5 6.3 9.5 12 9.5 17.5a9.5 9.5 0 1 1-19 0C2.5 13.5 7 7.8 12 1.5Z" fill="none" stroke="#3B2A33" strokeOpacity="0.45" strokeWidth="1" />
+            <path d="M12 1.5c5 6.3 9.5 12 9.5 17.5a9.5 9.5 0 1 1-19 0C2.5 13.5 7 7.8 12 1.5Z" fill="none" stroke="#221B1D" strokeOpacity="0.45" strokeWidth="1" />
           </svg>
         );
       })}
@@ -132,7 +132,7 @@ export function Quiz() {
                         style={{ borderRadius: galetShapes[i % 4] }}
                         className={cn(
                           "group relative flex min-h-[112px] items-center gap-4 px-6 py-5 text-left shadow-[var(--shadow-galet)] transition-[transform,background-color,color] duration-[var(--dur-3)] ease-[var(--ease-veil)] hover:-translate-y-1 active:translate-y-0 active:scale-[0.98] sm:min-h-[150px] sm:flex-col sm:items-start sm:justify-between",
-                          selected ? "bg-prune text-lait" : "bg-[radial-gradient(120%_100%_at_30%_15%,#fffdfa,#f1ebe3_65%,#e6dccf)] text-prune",
+                          selected ? "bg-prune text-lait" : "bg-[radial-gradient(120%_100%_at_30%_15%,#FFFFFF,#f1ebe3_65%,#e6dccf)] text-prune",
                         )}
                       >
                         <Icon name={o.icone as IconName} size={34} strokeWidth={1.1} className="shrink-0 transition-transform duration-500 ease-[var(--ease-veil)] group-hover:-rotate-6 group-hover:scale-110" />

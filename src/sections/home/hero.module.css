@@ -2,7 +2,7 @@
 
 .hero {
   --d: 1.05s; /* laisse le loader finir */
-  --P: min(90%, calc(100vw - 2rem), 62svh); /* hauteur du portrait */
+  --P: min(90%, calc((100vw - 2rem) / 0.704), 52svh); /* hauteur du portrait */
   --wm: min(19.6vw, 34svh); /* taille du mot-marque */
 }
 :global(html[data-seen]) .hero {
@@ -11,7 +11,7 @@
 
 .portrait {
   height: var(--P);
-  aspect-ratio: 670 / 702;
+  aspect-ratio: 1197 / 1700;
 }
 .portraitClip {
   animation: unveil 1.5s var(--ease-tide) var(--d) both;
@@ -23,15 +23,15 @@
 .wordmark {
   font-size: var(--wm);
   /* mobile : au-dessus du portrait, la tête passe devant le bas des lettres */
-  top: calc(100% - var(--P) - var(--wm) * 0.52);
+  top: calc(100% - var(--P) - var(--wm) * 0.62);
 }
 @media (min-width: 1024px) {
   .hero {
-    --P: min(90%, calc(100vw - 2rem), 58vw);
+    --P: min(94%, calc(58vw / 0.704));
   }
   .wordmark {
     /* tablette & desktop : à hauteur des yeux, comme la référence */
-    top: calc(100% - var(--P) * 0.735);
+    top: calc(100% - var(--P) * 0.655);
   }
 }
 

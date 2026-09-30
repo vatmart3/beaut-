@@ -65,9 +65,9 @@ function shadowTexture() {
   c.height = 128;
   const ctx = c.getContext("2d")!;
   const g = ctx.createRadialGradient(128, 64, 4, 128, 64, 124);
-  g.addColorStop(0, "rgba(59,42,51,0.55)");
-  g.addColorStop(0.45, "rgba(59,42,51,0.22)");
-  g.addColorStop(1, "rgba(59,42,51,0)");
+  g.addColorStop(0, "rgba(34,27,29,0.55)");
+  g.addColorStop(0.45, "rgba(34,27,29,0.22)");
+  g.addColorStop(1, "rgba(34,27,29,0)");
   ctx.setTransform(1, 0, 0, 0.5, 0, 32);
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, 256, 256);

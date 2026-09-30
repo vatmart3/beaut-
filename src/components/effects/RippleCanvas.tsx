@@ -61,8 +61,8 @@ export function RippleCanvas({
   origin = { x: 0.5, y: 0 },
   duration = 2.4,
   strength = 1,
-  light = "#FFFDFA",
-  shadow = "#C9A48A",
+  light = "#FFFFFF",
+  shadow = "#D4A78F",
   className,
 }: {
   trigger: number;

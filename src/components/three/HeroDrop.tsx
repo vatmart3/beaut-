@@ -29,7 +29,7 @@ interface Props extends DropInputs {
   onReady: () => void;
 }
 
-const ECUME = "#FFFDFA";
+const ECUME = "#FFFFFF";
 const CAM_Z = 10;
 const DROP_Z = 1.2;
 const ecumeColor = new THREE.Color(ECUME);
@@ -206,7 +206,7 @@ function Scene({ shell, word, pointer, progress, home, lite, onReady }: Props) {
       </mesh>
       <Environment resolution={128} frames={1}>
         <Lightformer form="rect" intensity={2.4} color="#fff7ef" position={[0, 4, 3]} scale={[8, 2, 1]} />
-        <Lightformer form="rect" intensity={1.2} color="#C9A48A" position={[-5, 0, 2]} rotation-y={Math.PI / 2} scale={[4, 6, 1]} />
+        <Lightformer form="rect" intensity={1.2} color="#D4A78F" position={[-5, 0, 2]} rotation-y={Math.PI / 2} scale={[4, 6, 1]} />
         <Lightformer form="ring" intensity={1.6} color="#ffffff" position={[3, 2, 4]} scale={1.4} />
         <Lightformer form="rect" intensity={0.8} color="#9CAF9A" position={[4, -3, 2]} scale={[5, 2, 1]} />
       </Environment>

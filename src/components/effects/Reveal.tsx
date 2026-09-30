@@ -6,20 +6,25 @@ import { ease } from "@/lib/motion";
 import { useReducedMotion } from "@/lib/device";
 import { cn } from "@/lib/cn";
 
-/** Révélation au clip-path, depuis le bas, coins arrondis préservés. */
+/**
+ * Révélation au clip-path, depuis le bas, coins arrondis préservés.
+ * L'observateur est posé sur un conteneur non découpé : un élément dont le
+ * clip-path est nul n'intersecte jamais (Chrome en tient compte).
+ */
 export function ClipReveal({ children, className, delay = 0, from = "bottom" }: { children: ReactNode; className?: string; delay?: number; from?: "bottom" | "left" | "center" }) {
   const reduced = useReducedMotion();
   const hidden =
     from === "left" ? "inset(0% 100% 0% 0% round 28px)" : from === "center" ? "inset(40% 40% 40% 40% round 999px)" : "inset(100% 0% 0% 0% round 28px)";
   return (
-    <motion.div
-      className={className}
-      initial={reduced ? { opacity: 0 } : { clipPath: hidden }}
-      whileInView={reduced ? { opacity: 1 } : { clipPath: "inset(0% 0% 0% 0% round 28px)" }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 1.3, delay, ease: ease.tide }}
-    >
-      {children}
+    <motion.div className={className} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
+      <motion.div
+        variants={{
+          hidden: reduced ? { opacity: 0 } : { clipPath: hidden },
+          show: reduced ? { opacity: 1 } : { clipPath: "inset(0% 0% 0% 0% round 28px)", transition: { duration: 1.3, delay, ease: ease.tide } },
+        }}
+      >
+        {children}
+      </motion.div>
     </motion.div>
   );
 }

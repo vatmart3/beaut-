@@ -109,7 +109,7 @@ function drawMotif(doc: Doc, d: CardData, GState: typeof import("jspdf").GState)
   if (d.motif === "galets") {
     const pebble = (x: number, y: number, rx: number, ry: number, base: string, light: string) => {
       opacity(0.14);
-      doc.setFillColor("#3B2A33");
+      doc.setFillColor("#221B1D");
       doc.ellipse(x + 0.6, y + ry * 0.75, rx * 0.95, ry * 0.45, "F");
       opacity(1);
       doc.setFillColor(base);
@@ -121,7 +121,7 @@ function drawMotif(doc: Doc, d: CardData, GState: typeof import("jspdf").GState)
     };
     pebble(92, 75, 19, 6.6, "#C9B6A2", "#F4EEE6");
     pebble(90.5, 64.5, 14.5, 5.2, "#9DAF9A", "#E3E9E1");
-    pebble(92.5, 55.2, 10, 3.8, "#3B2A33", "#6A5560");
+    pebble(92.5, 55.2, 10, 3.8, "#221B1D", "#6A5560");
   } else if (d.motif === "brume") {
     doc.setDrawColor(m.accent);
     [3, 7, 12, 18, 25, 33, 42, 52].forEach((r, i) => {
@@ -130,7 +130,7 @@ function drawMotif(doc: Doc, d: CardData, GState: typeof import("jspdf").GState)
       doc.ellipse(88, 67, r, r * 0.34, "S");
     });
     opacity(0.95);
-    doc.setFillColor("#FAF6F1");
+    doc.setFillColor("#F8F5F2");
     doc.circle(88, 55.4, 2.3, "F");
     doc.triangle(88, 49.4, 85.95, 54.5, 90.05, 54.5, "F");
     opacity(1);
@@ -143,7 +143,7 @@ function drawMotif(doc: Doc, d: CardData, GState: typeof import("jspdf").GState)
     doc.setFillColor("#EFE2D8");
     smoothBlob(doc, blobPoints(102, 38, 8, 11), "F");
     opacity(0.5);
-    doc.setFillColor("#C9A48A");
+    doc.setFillColor("#D4A78F");
     smoothBlob(doc, blobPoints(72, 84, 6, 5), "F");
     let s = 19;
     const rand = () => {
@@ -154,7 +154,7 @@ function drawMotif(doc: Doc, d: CardData, GState: typeof import("jspdf").GState)
       const a = rand() * Math.PI * 2;
       const r = Math.sqrt(rand()) * 18;
       opacity(0.15 + rand() * 0.25);
-      doc.setFillColor(i % 3 ? "#3B2A33" : "#FAF6F1");
+      doc.setFillColor(i % 3 ? "#221B1D" : "#F8F5F2");
       doc.circle(89 + Math.cos(a) * r, 67 + Math.sin(a) * r * 0.8, 0.12 + rand() * 0.25, "F");
     }
     opacity(1);
@@ -168,7 +168,7 @@ export async function genererPdf(d: CardData) {
   const t = (s: string) => clean(s, f.unicode);
   const m = motifDe(d.motif);
   const soft = "#65535D";
-  const prune = "#3B2A33";
+  const prune = "#221B1D";
 
   doc.setProperties({
     title: `Bon cadeau ${site.name} ${d.code}`,
@@ -178,7 +178,7 @@ export async function genererPdf(d: CardData) {
   });
 
   // Fond
-  doc.setFillColor("#FFFDFA");
+  doc.setFillColor("#FFFFFF");
   doc.rect(0, 0, PAGE_W, PAGE_H, "F");
 
   // Panneau motif (recto)

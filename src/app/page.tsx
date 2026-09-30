@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Hero } from "@/sections/home/Hero";
 import { Promesse } from "@/sections/home/Promesse";
+import { Marquee } from "@/sections/home/Marquee";
+import { Signature } from "@/sections/home/Signature";
+import { Bento } from "@/sections/home/Bento";
 import { Quiz } from "@/sections/home/Quiz";
-import { Carte } from "@/sections/home/Carte";
-import { Espace } from "@/sections/home/Espace";
+import { Galerie } from "@/sections/home/Galerie";
 import { Cadeaux } from "@/sections/home/Cadeaux";
 import { Praticiennes } from "@/sections/home/Praticiennes";
 import { Avis } from "@/sections/home/Avis";
@@ -22,9 +24,11 @@ export default function Home() {
     <div className="frame space-y-3 pt-3">
       <Hero />
       <Promesse />
+      <Marquee />
+      <Signature />
+      <Bento />
       <Quiz />
-      <Carte />
-      <Espace />
+      <Galerie />
       <Cadeaux />
       <Praticiennes />
       <Avis />

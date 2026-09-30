@@ -43,7 +43,7 @@ export function ThauMap({ children }: { children?: ReactNode }) {
             </desc>
             <defs>
               <pattern id={`w${uid}`} width="36" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(-18)">
-                <path d="M0 7c4.5-4 9-4 13.5 0s9 4 13.5 0 9-4 13.5 0" fill="none" stroke="#FFFDFA" strokeOpacity="0.55" strokeWidth="1" />
+                <path d="M0 7c4.5-4 9-4 13.5 0s9 4 13.5 0 9-4 13.5 0" fill="none" stroke="#FFFFFF" strokeOpacity="0.55" strokeWidth="1" />
               </pattern>
               <pattern id={`e${uid}`} width="28" height="12" patternUnits="userSpaceOnUse">
                 <path d="M0 6c3.5-3 7-3 10.5 0s7 3 10.5 0 7-3 10.5 0" fill="none" stroke="#9CAF9A" strokeOpacity="0.35" strokeWidth="0.8" />
@@ -67,7 +67,7 @@ export function ThauMap({ children }: { children?: ReactNode }) {
 
             {/* Mont Saint-Clair */}
             {[26, 17, 9].map((r, i) => (
-              <ellipse key={r} cx="566" cy="384" rx={r} ry={r * 0.65} fill="none" stroke="#3B2A33" strokeOpacity={0.12 + i * 0.04} strokeWidth="0.9" />
+              <ellipse key={r} cx="566" cy="384" rx={r} ry={r * 0.65} fill="none" stroke="#221B1D" strokeOpacity={0.12 + i * 0.04} strokeWidth="0.9" />
             ))}
 
             <text x="300" y="418" transform="rotate(-33 300 418)" className="fill-sauge-deep font-serif" fontSize="26" fontStyle="italic" letterSpacing="1">
@@ -85,7 +85,7 @@ export function ThauMap({ children }: { children?: ReactNode }) {
                     <path
                       d={t.route}
                       fill="none"
-                      stroke="#3B2A33"
+                      stroke="#221B1D"
                       strokeWidth={on ? 2.6 : 1.4}
                       strokeOpacity={actif && !on ? 0.2 : on ? 0.95 : 0.55}
                       strokeDasharray="2 6"
@@ -112,7 +112,7 @@ export function ThauMap({ children }: { children?: ReactNode }) {
                     height="26"
                     rx="13"
                     className={cn("transition-colors duration-[var(--dur-2)] ease-[var(--ease-veil)]", actif === t.ville ? "fill-prune" : "fill-ecume")}
-                    stroke="#3B2A33"
+                    stroke="#221B1D"
                     strokeOpacity="0.2"
                   />
                   <text
@@ -180,10 +180,10 @@ export function ThauMap({ children }: { children?: ReactNode }) {
                 <path
                   d={`M${INSTITUT.x} ${INSTITUT.y - 34}c7 9 12 16 12 23a12 12 0 1 1-24 0c0-7 5-14 12-23Z`}
                   className="fill-argile-deep"
-                  stroke="#FFFDFA"
+                  stroke="#FFFFFF"
                   strokeWidth="2"
                 />
-                <circle cx={INSTITUT.x} cy={INSTITUT.y - 11} r="3.5" fill="#FFFDFA" />
+                <circle cx={INSTITUT.x} cy={INSTITUT.y - 11} r="3.5" fill="#FFFFFF" />
               </motion.g>
               <motion.g initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={vp} transition={{ duration: 0.6, delay: reduced ? 0 : 2.3, ease: ease.veil }}>
                 <rect x={INSTITUT.x - 150} y={INSTITUT.y + 14} width="142" height="44" rx="22" className="fill-prune" />
@@ -204,8 +204,8 @@ export function ThauMap({ children }: { children?: ReactNode }) {
               </text>
             </g>
             <g transform="translate(40 36)">
-              <path d="M0 0h68" stroke="#3B2A33" strokeOpacity="0.5" strokeWidth="1.2" />
-              <path d="M0 -4v8M68 -4v8" stroke="#3B2A33" strokeOpacity="0.5" strokeWidth="1.2" />
+              <path d="M0 0h68" stroke="#221B1D" strokeOpacity="0.5" strokeWidth="1.2" />
+              <path d="M0 -4v8M68 -4v8" stroke="#221B1D" strokeOpacity="0.5" strokeWidth="1.2" />
               <text x="34" y="-9" textAnchor="middle" fontSize="11" className="fill-prune/60 font-sans">
                 2 km
               </text>

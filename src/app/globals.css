@@ -8,22 +8,22 @@
 
 @theme {
   /* — Couleurs de marque ------------------------------------------------ */
-  --color-lait: #faf6f1;
-  --color-argile: #c9a48a;
+  --color-lait: #f8f5f2;
+  --color-argile: #d4a78f; /* nude de la photo */
   --color-sauge: #9caf9a;
-  --color-sable: #e8ddd0;
-  --color-prune: #3b2a33;
+  --color-sable: #efe6df;
+  --color-prune: #221b1d; /* encre, presque noire comme la référence */
 
   /* — Dérivés (contrastes vérifiés AA sur lait / écume) ----------------- */
-  --color-prune-soft: #65535d; /* texte secondaire · 6,6:1 sur lait */
-  --color-prune-mute: #7a6a72; /* légendes ≥ 14px · 4,7:1 sur lait */
-  --color-argile-deep: #7e543c; /* accents texte · ≥ 4,5:1 sur lait & sable */
+  --color-prune-soft: #5f5457; /* texte secondaire · 6,6:1 sur lait */
+  --color-prune-mute: #756a6c; /* légendes ≥ 14px · 4,7:1 sur lait */
+  --color-argile-deep: #8a543d; /* accents texte · ≥ 4,5:1 sur lait & sable */
   --color-sauge-deep: #4e644c; /* accents texte · ≥ 4,5:1 sur lait & sable */
-  --color-voile: #f1ebe3; /* fond de page autour des coquilles */
-  --color-ecume: #fffdfa; /* intérieur des coquilles */
-  --color-argile-pale: #efe2d8;
+  --color-voile: #f1efec; /* fond de page autour des coquilles */
+  --color-ecume: #ffffff; /* intérieur des coquilles */
+  --color-argile-pale: #f5e8e0;
   --color-sauge-pale: #e3e9e1;
-  --color-ligne: rgb(59 42 51 / 0.14); /* filets */
+  --color-ligne: rgb(34 27 29 / 0.12); /* filets */
 
   /* — Typographies (variables injectées par next/font) ----------------- */
   --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
@@ -59,11 +59,11 @@
   --radius-shell: clamp(24px, 1rem + 1.6vw, 44px);
 
   /* — Ombres « sous un voile d'eau » ---------------------------------- */
-  --shadow-veil: 0 1px 1px rgb(59 42 51 / 0.03), 0 12px 30px -12px rgb(59 42 51 / 0.12),
-    0 40px 80px -40px rgb(59 42 51 / 0.14);
-  --shadow-float: 0 2px 4px rgb(59 42 51 / 0.04), 0 24px 60px -20px rgb(59 42 51 / 0.22);
-  --shadow-galet: inset 0 -10px 24px -8px rgb(59 42 51 / 0.12), inset 0 10px 18px -10px rgb(255 255 255 / 0.9),
-    0 26px 40px -24px rgb(59 42 51 / 0.35);
+  --shadow-veil: 0 1px 1px rgb(34 27 29 / 0.03), 0 12px 30px -12px rgb(34 27 29 / 0.12),
+    0 40px 80px -40px rgb(34 27 29 / 0.14);
+  --shadow-float: 0 2px 4px rgb(34 27 29 / 0.04), 0 24px 60px -20px rgb(34 27 29 / 0.22);
+  --shadow-galet: inset 0 -10px 24px -8px rgb(34 27 29 / 0.12), inset 0 10px 18px -10px rgb(255 255 255 / 0.9),
+    0 26px 40px -24px rgb(34 27 29 / 0.35);
 
   /* — Easings --------------------------------------------------------- */
   --ease-veil: cubic-bezier(0.22, 1, 0.36, 1);

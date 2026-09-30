@@ -121,7 +121,7 @@ export function Reserver() {
             <li>
               <Link
                 href={href}
-                className="group flex min-h-16 items-center justify-between gap-4 rounded-[var(--radius-card)] bg-prune p-5 pl-7 text-lait transition-colors hover:bg-[#2c1f26] sm:p-6 sm:pl-8"
+                className="group flex min-h-16 items-center justify-between gap-4 rounded-[var(--radius-card)] bg-prune p-5 pl-7 text-lait transition-colors hover:bg-[#000000] sm:p-6 sm:pl-8"
               >
                 <span className="flex items-center gap-3 font-display text-[1.1rem]">
                   <span className="grid size-7 place-items-center rounded-full bg-lait font-serif text-[0.9rem] text-prune">3</span>

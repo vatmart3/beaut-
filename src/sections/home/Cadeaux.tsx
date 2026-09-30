@@ -1,16 +1,25 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CardPreview } from "@/features/bons-cadeaux/CardPreview";
+import type { CardData } from "@/features/bons-cadeaux/cardArt";
 import { occasionDuMoment } from "@/data/bons-cadeaux";
 import { site } from "@/config/site";
 import { Button } from "@/components/ui/Button";
 import { LineReveal } from "@/components/effects/LineReveal";
-import { useReducedMotion } from "@/lib/device";
 import { cn } from "@/lib/cn";
 
-gsap.registerPlugin(ScrollTrigger);
+const demoCarte: CardData = {
+  motif: "galets",
+  titre: "80 €",
+  detail: "Montant libre, utilisable en plusieurs fois",
+  estSoin: false,
+  de: "Julie",
+  pour: "Maman",
+  message: "Une heure rien qu'à toi, et la tisane après.",
+  code: "BRM-EXEM-PLE2",
+  validite: "valable 12 mois",
+};
 
 type Occ = ReturnType<typeof occasionDuMoment>;
 
@@ -20,8 +29,6 @@ type Occ = ReturnType<typeof occasionDuMoment>;
  */
 export function Cadeaux() {
   const root = useRef<HTMLElement>(null);
-  const card = useRef<HTMLDivElement>(null);
-  const reduced = useReducedMotion();
   const [occ, setOcc] = useState<Occ | null>(null);
 
   useEffect(() => {
@@ -29,17 +36,6 @@ export function Cadeaux() {
     return () => cancelAnimationFrame(id);
   }, []);
 
-  useEffect(() => {
-    if (reduced || !card.current) return;
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        card.current,
-        { rotateY: -32, rotateX: 10, rotateZ: -6 },
-        { rotateY: 18, rotateX: -4, rotateZ: 4, ease: "none", scrollTrigger: { trigger: root.current, start: "top bottom", end: "bottom top", scrub: 0.8 } },
-      );
-    }, root);
-    return () => ctx.revert();
-  }, [reduced]);
 
   const active = occ?.active;
   const dateLabel = occ?.date.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
@@ -87,22 +83,12 @@ export function Cadeaux() {
           ) : null}
         </div>
 
-        <div className="relative flex justify-center [perspective:1400px] lg:col-span-5 lg:col-start-8">
-          <div ref={card} className="relative aspect-[1.6/1] w-full max-w-[520px] [transform-style:preserve-3d]">
-            <div className="absolute inset-0 overflow-hidden rounded-[26px] bg-sable shadow-[0_40px_80px_-30px_rgba(59,42,51,0.45)] [backface-visibility:hidden]">
-              <svg viewBox="0 0 520 325" className="absolute inset-0 size-full" aria-hidden>
-                <ellipse cx="380" cy="262" rx="120" ry="30" fill="#3B2A33" opacity="0.08" />
-                <path d="M270 250c0-28 50-46 108-46s102 17 102 42-46 38-106 38-104-9-104-34Z" fill="#C9A48A" />
-                <path d="M306 196c0-22 36-37 78-37s74 14 74 33-32 30-76 30-76-8-76-26Z" fill="#9CAF9A" />
-                <path d="M338 150c0-16 24-27 52-27s48 10 48 24-21 22-50 22-50-6-50-19Z" fill="#3B2A33" />
-              </svg>
-              <div className="absolute left-7 top-6 font-display text-[1.05rem] font-medium tracking-[0.3em] text-prune">BRUME</div>
-              <div className="absolute bottom-6 left-7 text-prune">
-                <p className="eyebrow text-prune-soft">Bon cadeau</p>
-                <p className="mt-1 font-serif text-[2.6rem] leading-none">80 €</p>
-              </div>
-            </div>
-          </div>
+        <div className="relative lg:col-span-6 lg:col-start-7">
+          <CardPreview
+            data={demoCarte}
+            description="Aperçu d'un bon cadeau BRUME de 80 euros, motif galets, à retourner pour lire le message."
+            className="mx-auto w-full max-w-[620px]"
+          />
         </div>
       </div>
     </section>

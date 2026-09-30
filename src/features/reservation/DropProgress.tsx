@@ -96,7 +96,7 @@ function Drop({ level, active }: { level: number; active: boolean }) {
           </motion.g>
         </g>
         <path d={DROP} fill="none" stroke="currentColor" strokeWidth="1.25" className={cn(level > 0 ? "text-prune" : "text-prune/35")} />
-        {level >= 1 ? <path d="M11.2 26.6c1.5 1 2.6 2.1 3.4 3.6 1.9-3.8 4.4-6.5 7.8-8.5" fill="none" stroke="#FFFDFA" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /> : null}
+        {level >= 1 ? <path d="M11.2 26.6c1.5 1 2.6 2.1 3.4 3.6 1.9-3.8 4.4-6.5 7.8-8.5" fill="none" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /> : null}
       </svg>
     </span>
   );

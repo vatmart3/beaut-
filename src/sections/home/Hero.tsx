@@ -175,9 +175,6 @@ export function Hero() {
             <span className="sr-only">BRUME — </span>
             Institut de soins à <span className="whitespace-nowrap">Balaruc-les-Bains&#8239;:</span> visage, corps et rituels en duo
           </h1>
-          <p className="mt-3 max-w-[34ch] text-[0.95rem] leading-relaxed text-prune-soft md:hidden">
-            Deux praticiennes, une cabine duo, une tisanerie. Sur rendez-vous, du mardi au samedi.
-          </p>
           <Link href="#rituel" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-full border border-prune/35 px-4 font-display text-[0.85rem] xl:hidden">
             Votre rituel en 4 questions
             <Icon name="fleche-bas" size={15} />
@@ -226,12 +223,12 @@ export function Hero() {
           <div className={cn(s.portraitClip, "absolute inset-0")}>
           <div className={cn(s.portraitInner, "absolute inset-0")}>
             <Image
-              src="/images/hero-portrait.png"
-              alt={`Cliente de l'institut BRUME à Balaruc-les-Bains appliquant une noisette de crème hydratante sur sa pommette`}
+              src="/images/hero-modele.png"
+              alt={`Portrait d'une femme au teint lumineux après un soin visage à l'institut BRUME, Balaruc-les-Bains`}
               fill
               preload
               fetchPriority="high"
-              sizes="(min-width: 1024px) 60vw, (min-width: 768px) 90vw, 100vw"
+              sizes="(min-width: 1024px) 42vw, (min-width: 768px) 60vw, 90vw"
               quality={80}
               className="object-contain object-bottom"
             />
@@ -239,10 +236,10 @@ export function Hero() {
           </div>
 
           {/* Trait fin joue → carte */}
-          <svg aria-hidden viewBox="0 0 670 702" preserveAspectRatio="none" className="pointer-events-none absolute inset-0 size-full overflow-visible">
-            <path className={s.line} pathLength={1} d="M368 236 L 640 468 L 640 492" fill="none" stroke="#FFFDFA" strokeOpacity="0.9" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+          <svg aria-hidden viewBox="0 0 1197 1700" preserveAspectRatio="none" className="pointer-events-none absolute inset-0 size-full overflow-visible">
+            <path className={s.line} pathLength={1} d="M770 860 L 1060 1180 L 1060 1250" fill="none" stroke="#221B1D" strokeOpacity="0.4" strokeWidth="1" vectorEffect="non-scaling-stroke" />
           </svg>
-          <span aria-hidden className={cn(s.hotspot, "absolute left-[54.9%] top-[33.6%] grid size-3 place-items-center")}>
+          <span aria-hidden className={cn(s.hotspot, "absolute left-[64.3%] top-[50.6%] grid size-3 place-items-center")}>
             <span className={cn(s.pulse, "absolute inset-0 rounded-full border border-white")} />
             <span className="size-2 rounded-full border border-white bg-white/40" />
           </span>
@@ -251,12 +248,12 @@ export function Hero() {
           <article
             className={cn(
               s.card,
-              "absolute left-[40.6%] top-[70%] h-[22.8%] w-[60.2%] overflow-hidden rounded-[18px] border border-white/60 bg-[linear-gradient(115deg,rgba(239,226,216,0.97),rgba(250,246,241,0.94)_55%,rgba(255,253,250,0.9))] shadow-[0_20px_50px_-20px_rgba(59,42,51,0.4)] backdrop-blur-xl sm:rounded-[24px]",
+              "absolute left-[40.6%] top-[70%] h-[22.8%] w-[60.2%] overflow-hidden rounded-[18px] border border-white/60 bg-[linear-gradient(115deg,rgba(239,226,216,0.97),rgba(250,246,241,0.94)_55%,rgba(255,253,250,0.9))] shadow-[0_20px_50px_-20px_rgba(34,27,29,0.4)] backdrop-blur-xl sm:rounded-[24px]",
             )}
           >
-            <div className="flex h-full items-stretch gap-2.5 p-2 sm:gap-4 sm:p-3 lg:p-3.5">
-              <div className="relative aspect-square h-full shrink-0 overflow-hidden rounded-[12px] bg-sable sm:rounded-[16px]">
-                <CreamJar />
+            <div className="flex items-stretch gap-2.5 p-2 sm:gap-4 sm:p-3 lg:p-3.5">
+              <div className="relative aspect-square w-[60px] shrink-0 overflow-hidden rounded-[12px] bg-sable sm:w-[84px] sm:rounded-[16px] lg:w-[clamp(96px,8vw,124px)]">
+                <Image src="/images/brume/pommette.jpg" alt="" fill sizes="120px" className="object-cover" />
               </div>
               <div className="flex min-w-0 flex-1 flex-col justify-between py-0.5">
                 <div className="hidden flex-wrap gap-1.5 xl:flex">
@@ -264,7 +261,7 @@ export function Hero() {
                   <span className="rounded-full border border-prune/25 px-2.5 py-1 font-display text-[0.7rem] leading-none lg:text-[0.75rem]">Soin visage</span>
                 </div>
                 <div className="min-w-0">
-                  <h2 className="line-clamp-2 font-display text-[0.78rem] leading-tight xl:truncate tracking-[-0.02em] sm:text-[1.05rem] lg:text-[1.3rem]">
+                  <h2 className="font-display text-[0.9rem] leading-tight tracking-[-0.02em] sm:text-[1.05rem] lg:text-[1.3rem]">
                     <Link href={`/soins/${featured.slug}`} className="after:absolute after:inset-0 hover:underline hover:decoration-prune/40 hover:underline-offset-4">
                       {featured.nom}
                     </Link>
@@ -329,40 +326,16 @@ function DropSvg() {
         </radialGradient>
         <linearGradient id="dropRim" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="#FFFFFF" />
-          <stop offset="1" stopColor="#C9A48A" stopOpacity="0.6" />
+          <stop offset="1" stopColor="#D4A78F" stopOpacity="0.6" />
         </linearGradient>
         <filter id="dropShadow" x="-40%" y="-40%" width="180%" height="180%">
           <feGaussianBlur stdDeviation="5" />
         </filter>
       </defs>
-      <ellipse cx="54" cy="126" rx="26" ry="4" fill="#3B2A33" opacity="0.12" filter="url(#dropShadow)" />
+      <ellipse cx="54" cy="126" rx="26" ry="4" fill="#221B1D" opacity="0.12" filter="url(#dropShadow)" />
       <path d="M50 4C66 26 88 50 88 78a38 38 0 1 1-76 0C12 50 34 26 50 4Z" fill="url(#dropBody)" stroke="url(#dropRim)" strokeWidth="1.2" />
       <path d="M30 76c1.5 11 8.5 19 19 21" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" opacity="0.9" />
       <ellipse cx="64" cy="58" rx="5" ry="9" fill="#fff" opacity="0.7" transform="rotate(-24 64 58)" />
-    </svg>
-  );
-}
-
-/** Vignette de la carte : pot de crème vu de dessus, dessiné sur mesure. */
-function CreamJar() {
-  return (
-    <svg viewBox="0 0 100 100" className="block size-full" aria-hidden>
-      <defs>
-        <radialGradient id="jarRim" cx="40%" cy="35%" r="70%">
-          <stop offset="0" stopColor="#FFFDFA" />
-          <stop offset="1" stopColor="#D8C6B4" />
-        </radialGradient>
-        <radialGradient id="jarCream" cx="45%" cy="40%" r="60%">
-          <stop offset="0" stopColor="#FFFFFF" />
-          <stop offset="1" stopColor="#EFE7DD" />
-        </radialGradient>
-      </defs>
-      <rect width="100" height="100" fill="#E8DDD0" />
-      <ellipse cx="54" cy="58" rx="36" ry="34" fill="#3B2A33" opacity="0.08" />
-      <circle cx="50" cy="52" r="34" fill="url(#jarRim)" />
-      <circle cx="50" cy="52" r="28" fill="url(#jarCream)" />
-      <path d="M36 50c4-9 17-11 22-4 4 6-3 13-10 11-5-1.5-5-7 0-8" fill="none" stroke="#D9CBBB" strokeWidth="1.6" strokeLinecap="round" />
-      <path d="M44 64c6 3 14 2 19-4" fill="none" stroke="#E3D6C8" strokeWidth="1.4" strokeLinecap="round" />
     </svg>
   );
 }

@@ -99,14 +99,14 @@ export function FicheRoutine() {
                 cx="120"
                 r="22"
                 initial={false}
-                animate={{ cy: reduced ? 70 : 42 + t * 92, fill: nuit ? "#E8DDD0" : "#C9A48A" }}
+                animate={{ cy: reduced ? 70 : 42 + t * 92, fill: nuit ? "#EFE6DF" : "#D4A78F" }}
                 transition={{ duration: 1.4, ease: ease.veil }}
               />
-              <rect y="112" width="240" height="58" fill={nuit ? "#3B2A33" : "#9CAF9A"} className="transition-[fill] duration-[1200ms] ease-[var(--ease-veil)]" />
+              <rect y="112" width="240" height="58" fill={nuit ? "#221B1D" : "#9CAF9A"} className="transition-[fill] duration-[1200ms] ease-[var(--ease-veil)]" />
               {[124, 138, 152].map((y, i) => (
-                <path key={y} d={`M${10 + i * 14} ${y}c14-5 28-5 42 0s28 5 42 0 28-5 42 0 28 5 42 0`} fill="none" stroke="#FFFDFA" strokeOpacity={0.45 - i * 0.1} strokeWidth="1.2" />
+                <path key={y} d={`M${10 + i * 14} ${y}c14-5 28-5 42 0s28 5 42 0 28-5 42 0 28 5 42 0`} fill="none" stroke="#FFFFFF" strokeOpacity={0.45 - i * 0.1} strokeWidth="1.2" />
               ))}
-              <motion.ellipse cx="120" cy="120" rx="30" ry="3" initial={false} animate={{ opacity: nuit ? 0.2 : 0.55 - t * 0.3 }} fill="#FFFDFA" />
+              <motion.ellipse cx="120" cy="120" rx="30" ry="3" initial={false} animate={{ opacity: nuit ? 0.2 : 0.55 - t * 0.3 }} fill="#FFFFFF" />
             </svg>
             <div className="mt-6 h-[5.5rem] overflow-hidden">
               <AnimatePresence mode="wait" initial={false}>

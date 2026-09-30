@@ -26,7 +26,7 @@ export function Matiere({
     <div className={cn("relative overflow-hidden bg-sable", className)} role={label ? "img" : undefined} aria-label={label} aria-hidden={label ? undefined : true}>
       <div className={cn("absolute inset-0", breathe && "motion-safe:animate-breathe")}>
         {kind === "portrait" ? (
-          <Image src="/images/soin-visage-detail.jpg" alt="" fill sizes={sizes} className="object-cover object-[50%_35%]" />
+          <Image src="/images/brume/pommette.jpg" alt="" fill sizes={sizes} className="object-cover object-center" />
         ) : (
           <Svg kind={kind} id={id} />
         )}
@@ -55,7 +55,7 @@ function Svg({ kind, id }: { kind: Exclude<MatiereId, "portrait">; id: string })
           <rect width="400" height="500" fill={`url(#g${id})`} />
           <rect width="400" height="500" filter={`url(#f${id})`} opacity="0.55" />
           {[40, 80, 130, 190, 260].map((r, i) => (
-            <ellipse key={r} cx="250" cy="330" rx={r} ry={r * 0.32} fill="none" stroke="#FAF6F1" strokeOpacity={0.5 - i * 0.08} strokeWidth="1" />
+            <ellipse key={r} cx="250" cy="330" rx={r} ry={r * 0.32} fill="none" stroke="#F8F5F2" strokeOpacity={0.5 - i * 0.08} strokeWidth="1" />
           ))}
         </svg>
       );
@@ -65,7 +65,7 @@ function Svg({ kind, id }: { kind: Exclude<MatiereId, "portrait">; id: string })
           <defs>
             <radialGradient id={`g${id}`} cx="0.3" cy="0.25" r="0.9">
               <stop offset="0" stopColor="#E4CBB8" />
-              <stop offset="0.6" stopColor="#C9A48A" />
+              <stop offset="0.6" stopColor="#D4A78F" />
               <stop offset="1" stopColor="#A9806A" />
             </radialGradient>
             <filter id={`f${id}`}>
@@ -86,7 +86,7 @@ function Svg({ kind, id }: { kind: Exclude<MatiereId, "portrait">; id: string })
           <defs>
             <linearGradient id={`g${id}`} x1="0" y1="0" x2="1" y2="1">
               <stop offset="0" stopColor="#F4EEE6" />
-              <stop offset="1" stopColor="#E8DDD0" />
+              <stop offset="1" stopColor="#EFE6DF" />
             </linearGradient>
             <filter id={`f${id}`}>
               <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="1" seed="11" />
@@ -100,7 +100,7 @@ function Svg({ kind, id }: { kind: Exclude<MatiereId, "portrait">; id: string })
           <rect width="400" height="500" fill={`url(#g${id})`} />
           <rect width="400" height="500" filter={`url(#s${id})`} opacity="0.45" transform="translate(1.2 1.6)" />
           <rect width="400" height="500" filter={`url(#f${id})`} />
-          <path d="M-20 390 C 90 350, 180 420, 420 360 L 420 520 L -20 520 Z" fill="#C9A48A" opacity="0.22" />
+          <path d="M-20 390 C 90 350, 180 420, 420 360 L 420 520 L -20 520 Z" fill="#D4A78F" opacity="0.22" />
         </svg>
       );
     case "lin":
@@ -121,7 +121,7 @@ function Svg({ kind, id }: { kind: Exclude<MatiereId, "portrait">; id: string })
           <rect width="400" height="500" fill={`url(#g${id})`} />
           <rect width="400" height="500" filter={`url(#f${id})`} opacity="0.35" />
           <path d="M0 120 C 120 180, 260 60, 400 140 L400 160 C 260 90, 140 200, 0 150Z" fill="#fff" opacity="0.35" />
-          <path d="M0 300 C 140 250, 250 360, 400 290 L400 310 C 250 380, 130 280, 0 330Z" fill="#3B2A33" opacity="0.05" />
+          <path d="M0 300 C 140 250, 250 360, 400 290 L400 310 C 250 380, 130 280, 0 330Z" fill="#221B1D" opacity="0.05" />
         </svg>
       );
     case "huile":
@@ -159,7 +159,7 @@ function Svg({ kind, id }: { kind: Exclude<MatiereId, "portrait">; id: string })
               <stop offset="1" stopColor="#E0D3C3" />
             </linearGradient>
             <radialGradient id={`p${id}`} cx="0.35" cy="0.3" r="0.9">
-              <stop offset="0" stopColor="#FFFDFA" />
+              <stop offset="0" stopColor="#FFFFFF" />
               <stop offset="0.55" stopColor="#D9CBBB" />
               <stop offset="1" stopColor="#A89786" />
             </radialGradient>
@@ -177,7 +177,7 @@ function Svg({ kind, id }: { kind: Exclude<MatiereId, "portrait">; id: string })
             </filter>
           </defs>
           <rect width="400" height="500" fill={`url(#b${id})`} />
-          <ellipse cx="205" cy="418" rx="130" ry="18" fill="#3B2A33" opacity="0.22" filter={`url(#sh${id})`} />
+          <ellipse cx="205" cy="418" rx="130" ry="18" fill="#221B1D" opacity="0.22" filter={`url(#sh${id})`} />
           <path d="M80 392c0-34 58-56 124-56s118 20 118 50-54 44-122 44S80 420 80 392Z" fill={`url(#p${id})`} />
           <path d="M120 322c0-27 42-44 90-44s86 16 86 40-38 36-88 36-88-10-88-32Z" fill={`url(#q${id})`} />
           <path d="M156 262c0-20 28-33 60-33s56 12 56 30-25 27-58 27-58-7-58-24Z" fill={`url(#r${id})`} />

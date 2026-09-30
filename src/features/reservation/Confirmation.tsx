@@ -76,7 +76,7 @@ export function Confirmation({
   return (
     <div className="relative">
       <div className="relative isolate overflow-hidden rounded-[var(--radius-card)] bg-sauge-pale px-5 pb-10 pt-14 sm:px-10 sm:pt-20 lg:px-14">
-        <RippleCanvas trigger={ripple} origin={{ x: 0.12, y: 0.22 }} light="#FFFDFA" shadow="#9CAF9A" duration={2.8} />
+        <RippleCanvas trigger={ripple} origin={{ x: 0.12, y: 0.22 }} light="#FFFFFF" shadow="#9CAF9A" duration={2.8} />
         {/* La goutte tombe et touche la surface */}
         <motion.svg
           aria-hidden
@@ -89,7 +89,7 @@ export function Confirmation({
           transition={reduced ? { duration: 0.3 } : { duration: 0.75, ease: ease.fall, scaleY: { duration: 0.95, times: [0, 0.75, 0.88, 1] } }}
         >
           <path d="M16 2.5C22 11 27.5 18 27.5 26a11.5 11.5 0 1 1-23 0C4.5 18 10 11 16 2.5Z" fill="currentColor" />
-          <path d="M11.2 26.6c1.5 1 2.6 2.1 3.4 3.6 1.9-3.8 4.4-6.5 7.8-8.5" fill="none" stroke="#FFFDFA" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M11.2 26.6c1.5 1 2.6 2.1 3.4 3.6 1.9-3.8 4.4-6.5 7.8-8.5" fill="none" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         </motion.svg>
 
         <motion.h2

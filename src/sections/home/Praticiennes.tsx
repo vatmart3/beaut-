@@ -28,7 +28,7 @@ export function Praticiennes() {
               <div
                 className={cn(
                   "grain relative grid aspect-[4/5] place-items-center overflow-hidden",
-                  p.teinte === "argile" ? "bg-[radial-gradient(120%_90%_at_30%_20%,#f6e9df,#c9a48a_70%,#a9806a)]" : "bg-[radial-gradient(120%_90%_at_30%_20%,#eef2ec,#9caf9a_70%,#7f917c)]",
+                  p.teinte === "argile" ? "bg-[radial-gradient(120%_90%_at_30%_20%,#f6e9df,#D4A78F_70%,#a9806a)]" : "bg-[radial-gradient(120%_90%_at_30%_20%,#eef2ec,#9caf9a_70%,#7f917c)]",
                 )}
                 style={{ borderRadius: i === 0 ? "46% 54% 44% 56% / 38% 40% 60% 62%" : "54% 46% 58% 42% / 40% 38% 62% 60%" }}
                 role="img"

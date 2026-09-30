@@ -7,25 +7,11 @@ nets à toutes les tailles et propres au site. Une seule photographie est utilis
 
 | Fichier | Usage | Source | Statut |
 |---|---|---|---|
-| `public/images/hero-portrait.png` (1340 × 1404, fond transparent) | Portrait du hero (accueil) | Image de référence fournie par le client (maquette « SKINOPHY »). Détourée (BiRefNet portrait), trait de légende retiré par inpainting, agrandie ×2 (Lanczos + accentuation légère). La zone de l'ancienne carte produit est floutée : la carte soin du site la recouvre exactement. | ⚠️ **Placeholder — droits inconnus.** À remplacer avant toute mise en ligne publique par une photo sous licence (banque d'images payante ou séance photo). |
-| `public/images/soin-visage.jpg`, `public/images/soin-visage-detail.jpg` | Visuel « portrait » des fiches soins visage | Recadrages de la même image | ⚠️ Même statut : à remplacer. |
-| `src/assets/og-portrait.png` | Images Open Graph (`next/og`) | Réduction de la même image | ⚠️ Même statut : à remplacer. |
+| `public/images/hero-modele.png` (1197 × 1700, fond transparent) | Portrait du hero | Photo **Pexels** fournie par le client (licence Pexels : usage libre, commercial compris, sans attribution obligatoire). Détourée (BiRefNet portrait), bords d'épaules adoucis. | ✅ Libre de droits — créditer le photographe Pexels si possible |
+| `public/images/brume/visage.jpg`, `regard.jpg`, `levres.jpg`, `pommette.jpg`, `epaules.jpg`, `profil.jpg`, `nude.jpg` | Mosaïque des soins, protocole signature, en-têtes des pages, bandeau défilant, cartes | Recadrages de la même photo Pexels | ✅ |
+| `src/assets/og-portrait.png` | Images Open Graph | Réduction du portrait détouré | ✅ |
 
-### Prompt pour régénérer un portrait équivalent (IA ou brief photographe)
-
-> Studio beauty portrait of a woman in her late twenties with long, glossy dark-brown
-> wavy hair falling over both shoulders, soft natural smile, eyes looking at the camera,
-> head very slightly tilted. Her right hand's fingertips rest lightly on her cheekbone,
-> where a small dollop of white face cream sits just under the eye. White thin-strap
-> top. Pure white seamless background, soft diffused daylight from the front-left,
-> no harsh shadows, dewy luminous skin with natural texture, subtle warm peach makeup.
-> Framing: from the top of the head (with a little air above) down to mid-chest,
-> subject centered. Photorealistic, 85 mm lens, f/5.6, high-end skincare campaign.
->
-> **Format de livraison : 2400 × 2520 px minimum (ratio 670:702), PNG détouré
-> (fond transparent) ou JPG sur fond blanc pur.** Le visage doit occuper la même place :
-> yeux à ~33 % de la hauteur, pommette touchée à ~55 % de la largeur (le trait fin du
-> hero part de ce point — coordonnées réglables dans `src/sections/home/Hero.tsx`).
+La licence Pexels interdit de vendre la photo telle quelle ou de laisser penser que la personne photographiée cautionne la marque : ici elle illustre un site de démonstration, ce qui est conforme. Pour un vrai client, prévoir une séance photo en institut.
 
 ### Photos à prévoir pour un vrai client (brief photographe)
 

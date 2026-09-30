@@ -3,9 +3,9 @@
 export type MotifId = "galets" | "brume" | "argile";
 
 export const motifs: { id: MotifId; label: string; description: string; fond: string; encre: string; accent: string }[] = [
-  { id: "galets", label: "Galets", description: "Trois galets posés, fond sable", fond: "#E8DDD0", encre: "#3B2A33", accent: "#C9A48A" },
-  { id: "brume", label: "Brume", description: "Onde concentrique, fond sauge", fond: "#9CAF9A", encre: "#23191F", accent: "#FAF6F1" },
-  { id: "argile", label: "Argile", description: "Texture d'argile, fond prune", fond: "#3B2A33", encre: "#FAF6F1", accent: "#C9A48A" },
+  { id: "galets", label: "Galets", description: "Trois galets posés, fond sable", fond: "#EFE6DF", encre: "#221B1D", accent: "#D4A78F" },
+  { id: "brume", label: "Brume", description: "Onde concentrique, fond sauge", fond: "#9CAF9A", encre: "#23191F", accent: "#F8F5F2" },
+  { id: "argile", label: "Argile", description: "Texture d'argile, fond prune", fond: "#221B1D", encre: "#F8F5F2", accent: "#D4A78F" },
 ];
 
 export const montantsSuggeres = [50, 80, 120, 150];

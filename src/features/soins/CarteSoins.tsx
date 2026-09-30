@@ -98,7 +98,7 @@ function CarteVue({ filtres, onChange }: { filtres: Filtres; onChange: (f: Filtr
     <div className="relative">
       {/* Zone de l'onde : filtres + haut de la liste (≈ un écran) */}
       <div ref={zone} aria-hidden className="pointer-events-none absolute inset-x-0 top-0 z-20 h-[min(100%,100svh)] overflow-hidden rounded-[var(--radius-shell)]">
-        <RippleCanvas trigger={onde.n} origin={{ x: onde.x, y: onde.y }} duration={2.2} strength={0.55} light="#FFFFFF" shadow="#C9A48A" />
+        <RippleCanvas trigger={onde.n} origin={{ x: onde.x, y: onde.y }} duration={2.2} strength={0.55} light="#FFFFFF" shadow="#D4A78F" />
       </div>
 
       {/* — Filtres ———————————————————————————————————————— */}

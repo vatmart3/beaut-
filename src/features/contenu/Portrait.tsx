@@ -2,7 +2,7 @@ import { useId } from "react";
 import { cn } from "@/lib/cn";
 
 const teintes = {
-  argile: ["#F1E2D6", "#C9A48A", "#94705A"],
+  argile: ["#F1E2D6", "#D4A78F", "#94705A"],
   sauge: ["#EEF2EC", "#9CAF9A", "#66796A"],
 } as const;
 
@@ -49,12 +49,12 @@ export function Portrait({
             <path d="M150 18c78 0 128 62 128 150 0 104-58 174-134 174C66 342 22 270 22 176 22 84 72 18 150 18Z" />
           </clipPath>
         </defs>
-        <ellipse cx="150" cy="346" rx="104" ry="12" fill="#3B2A33" opacity="0.22" filter={`url(#s${id})`} />
+        <ellipse cx="150" cy="346" rx="104" ry="12" fill="#221B1D" opacity="0.22" filter={`url(#s${id})`} />
         <g clipPath={`url(#c${id})`}>
           <rect width="300" height="360" fill={`url(#g${id})`} />
           <rect width="300" height="360" fill={b} filter={`url(#t${id})`} opacity="0.42" style={{ mixBlendMode: "multiply" }} />
           <ellipse cx="108" cy="92" rx="70" ry="44" fill="#fff" opacity="0.28" transform="rotate(-24 108 92)" />
-          <path d="M40 250c60 40 160 50 240 0v120H40Z" fill="#3B2A33" opacity="0.08" />
+          <path d="M40 250c60 40 160 50 240 0v120H40Z" fill="#221B1D" opacity="0.08" />
         </g>
       </svg>
       <span

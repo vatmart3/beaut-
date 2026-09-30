@@ -12,13 +12,13 @@ import { hoursShort } from "@/lib/hours";
 
 /** Formes, teintes et décalages de chaque galet — composition « posée à la main ». */
 const galets = [
-  { shape: "58% 42% 55% 45% / 52% 58% 42% 48%", tone: "bg-[radial-gradient(120%_90%_at_30%_20%,#fffdfa,#e8ddd0_60%,#d6c6b4)]", w: "w-[min(82vw,360px)] lg:w-[380px]", h: "h-[100px] lg:h-[170px]", dy: 0, rot: -3 },
+  { shape: "58% 42% 55% 45% / 52% 58% 42% 48%", tone: "bg-[radial-gradient(120%_90%_at_30%_20%,#FFFFFF,#EFE6DF_60%,#d6c6b4)]", w: "w-[min(82vw,360px)] lg:w-[380px]", h: "h-[100px] lg:h-[170px]", dy: 0, rot: -3 },
   { shape: "46% 54% 42% 58% / 55% 45% 55% 45%", tone: "bg-[radial-gradient(120%_90%_at_30%_20%,#f4f7f2,#c9d4c6_60%,#9caf9a)]", w: "w-[min(70vw,300px)] lg:w-[300px]", h: "h-[92px] lg:h-[140px]", dy: 40, rot: 4 },
-  { shape: "52% 48% 60% 40% / 45% 55% 45% 55%", tone: "bg-[radial-gradient(120%_90%_at_30%_20%,#fbf1ea,#e6cfbf_60%,#c9a48a)]", w: "w-[min(76vw,320px)] lg:w-[330px]", h: "h-[96px] lg:h-[150px]", dy: -10, rot: -2 },
-  { shape: "60% 40% 48% 52% / 50% 50% 50% 50%", tone: "bg-[radial-gradient(120%_90%_at_30%_20%,#fffdfa,#efe7dd_60%,#ddd0c0)]", w: "w-[min(66vw,280px)] lg:w-[280px]", h: "h-[90px] lg:h-[128px]", dy: 20, rot: 3 },
+  { shape: "52% 48% 60% 40% / 45% 55% 45% 55%", tone: "bg-[radial-gradient(120%_90%_at_30%_20%,#fbf1ea,#e6cfbf_60%,#D4A78F)]", w: "w-[min(76vw,320px)] lg:w-[330px]", h: "h-[96px] lg:h-[150px]", dy: -10, rot: -2 },
+  { shape: "60% 40% 48% 52% / 50% 50% 50% 50%", tone: "bg-[radial-gradient(120%_90%_at_30%_20%,#FFFFFF,#efe7dd_60%,#ddd0c0)]", w: "w-[min(66vw,280px)] lg:w-[280px]", h: "h-[90px] lg:h-[128px]", dy: 20, rot: 3 },
   { shape: "44% 56% 52% 48% / 58% 42% 58% 42%", tone: "bg-[radial-gradient(120%_90%_at_30%_20%,#f4f7f2,#dbe3d8_60%,#b8c6b5)]", w: "w-[min(60vw,250px)] lg:w-[250px]", h: "h-[88px] lg:h-[118px]", dy: -24, rot: -4 },
   { shape: "55% 45% 40% 60% / 48% 52% 48% 52%", tone: "bg-[radial-gradient(120%_90%_at_30%_20%,#fbf6f1,#efe2d8_60%,#dcc2ae)]", w: "w-[min(58vw,240px)] lg:w-[240px]", h: "h-[86px] lg:h-[112px]", dy: 30, rot: 2 },
-  { shape: "50% 50% 56% 44% / 54% 46% 54% 46%", tone: "bg-[radial-gradient(120%_90%_at_30%_20%,#6a5560,#3b2a33_55%,#23191f)] text-lait", w: "w-[min(72vw,300px)] lg:w-[320px]", h: "h-[104px] lg:h-[140px]", dy: 6, rot: -1 },
+  { shape: "50% 50% 56% 44% / 54% 46% 54% 46%", tone: "bg-[radial-gradient(120%_90%_at_30%_20%,#6a5560,#221B1D_55%,#000000)] text-lait", w: "w-[min(72vw,300px)] lg:w-[320px]", h: "h-[104px] lg:h-[140px]", dy: 6, rot: -1 },
 ];
 
 export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -79,7 +79,7 @@ export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => v
                 rx={r}
                 ry={r * 0.38}
                 fill="none"
-                stroke="#C9A48A"
+                stroke="#D4A78F"
                 strokeOpacity={0.28 - i * 0.035}
                 initial={{ scale: 0.6, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}

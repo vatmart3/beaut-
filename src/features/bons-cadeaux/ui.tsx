@@ -83,9 +83,9 @@ export function MotifMini({ id, className }: { id: MotifId; className?: string }
         <>
           <defs>
             {[
-              ["a", "#FFFDFA", "#D9CBBB", "#A89786"],
+              ["a", "#FFFFFF", "#D9CBBB", "#A89786"],
               ["b", "#F1F4EF", "#B8C6B5", "#7F917C"],
-              ["c", "#7A6570", "#3B2A33", "#23191F"],
+              ["c", "#7A6570", "#221B1D", "#23191F"],
             ].map(([k, c0, c1, c2]) => (
               <radialGradient key={k} id={`${uid}${k}`} cx="0.35" cy="0.3" r="0.9">
                 <stop offset="0" stopColor={c0} />
@@ -94,12 +94,12 @@ export function MotifMini({ id, className }: { id: MotifId; className?: string }
               </radialGradient>
             ))}
           </defs>
-          <rect width="160" height="100" fill="#E8DDD0" />
-          <ellipse cx="118" cy="86" rx="30" ry="4" fill="#3B2A33" opacity="0.15" />
+          <rect width="160" height="100" fill="#EFE6DF" />
+          <ellipse cx="118" cy="86" rx="30" ry="4" fill="#221B1D" opacity="0.15" />
           <ellipse cx="118" cy="78" rx="28" ry="9.5" fill={`url(#${uid}a)`} />
           <ellipse cx="116" cy="62" rx="21" ry="7.5" fill={`url(#${uid}b)`} />
           <ellipse cx="119" cy="49" rx="14" ry="5.4" fill={`url(#${uid}c)`} />
-          <text x="12" y="88" fontSize="22" fontWeight="300" fill="#3B2A33" style={{ fontFamily: "var(--font-manrope)" }} letterSpacing="-1">
+          <text x="12" y="88" fontSize="22" fontWeight="300" fill="#221B1D" style={{ fontFamily: "var(--font-manrope)" }} letterSpacing="-1">
             BRUME
           </text>
         </>
@@ -107,20 +107,20 @@ export function MotifMini({ id, className }: { id: MotifId; className?: string }
         <>
           <rect width="160" height="100" fill="#9CAF9A" />
           {[5, 11, 19, 28, 39, 52, 66].map((r, i) => (
-            <ellipse key={r} cx="112" cy="64" rx={r} ry={r * 0.34} fill="none" stroke="#FAF6F1" strokeOpacity={Math.max(0.15, 0.9 - i * 0.12)} strokeWidth="0.9" />
+            <ellipse key={r} cx="112" cy="64" rx={r} ry={r * 0.34} fill="none" stroke="#F8F5F2" strokeOpacity={Math.max(0.15, 0.9 - i * 0.12)} strokeWidth="0.9" />
           ))}
-          <path d="M112 38c2.6 3.4 4.4 6 4.4 8.2a4.4 4.4 0 1 1-8.8 0c0-2.2 1.8-4.8 4.4-8.2Z" fill="#FAF6F1" />
+          <path d="M112 38c2.6 3.4 4.4 6 4.4 8.2a4.4 4.4 0 1 1-8.8 0c0-2.2 1.8-4.8 4.4-8.2Z" fill="#F8F5F2" />
           <text x="12" y="88" fontSize="22" fontWeight="300" fill="#23191F" style={{ fontFamily: "var(--font-manrope)" }} letterSpacing="-1">
             BRUME
           </text>
         </>
       ) : (
         <>
-          <rect width="160" height="100" fill="#3B2A33" />
+          <rect width="160" height="100" fill="#221B1D" />
           <path d="M104 62c10-14 38-12 48 2s0 34-18 36-40-4-38-16 0-14 8-22Z" fill="#8B5E45" />
-          <path d="M98 60c8-12 32-12 40 0s2 26-14 28-34-2-32-12 0-10 6-16Z" fill="#C9A48A" />
+          <path d="M98 60c8-12 32-12 40 0s2 26-14 28-34-2-32-12 0-10 6-16Z" fill="#D4A78F" />
           <path d="M132 18c6-4 16-2 18 4s-4 12-12 12-12-4-10-8 0-6 4-8Z" fill="#EFE2D8" opacity="0.8" />
-          <text x="12" y="88" fontSize="22" fontWeight="300" fill="#FAF6F1" style={{ fontFamily: "var(--font-manrope)" }} letterSpacing="-1">
+          <text x="12" y="88" fontSize="22" fontWeight="300" fill="#F8F5F2" style={{ fontFamily: "var(--font-manrope)" }} letterSpacing="-1">
             BRUME
           </text>
         </>

@@ -152,7 +152,7 @@ function pebble(ctx: Ctx, cx: number, cy: number, rx: number, ry: number, stops:
   g.addColorStop(0, stops[0]);
   g.addColorStop(0.55, stops[1]);
   g.addColorStop(1, stops[2]);
-  ctx.shadowColor = "rgba(59,42,51,0.28)";
+  ctx.shadowColor = "rgba(34,27,29,0.28)";
   ctx.shadowBlur = 46;
   ctx.shadowOffsetY = 22;
   ctx.fillStyle = g;
@@ -195,16 +195,16 @@ function drawMotif(ctx: Ctx, motif: MotifId, x: number, y: number, scale = 1, on
   ctx.translate(x, y);
   ctx.scale(scale, scale);
   if (motif === "galets") {
-    pebble(ctx, 0, 250, 260, 92, ["#FFFDFA", "#D9CBBB", "#A89786"], -0.03);
+    pebble(ctx, 0, 250, 260, 92, ["#FFFFFF", "#D9CBBB", "#A89786"], -0.03);
     pebble(ctx, -18, 128, 196, 70, ["#F1F4EF", "#B8C6B5", "#7F917C"], 0.04);
-    pebble(ctx, 22, 30, 134, 50, ["#7A6570", "#3B2A33", "#23191F"], -0.05);
+    pebble(ctx, 22, 30, 134, 50, ["#7A6570", "#221B1D", "#23191F"], -0.05);
   } else if (motif === "brume") {
     // sur le papier clair du verso, l'onde prend la couleur de la sauge
     const line = onPaper ? "#7F917C" : m.accent;
     if (!onPaper) {
       const glow = ctx.createRadialGradient(0, 0, 0, 0, 0, 520);
-      glow.addColorStop(0, rgba("#FAF6F1", 0.5));
-      glow.addColorStop(1, rgba("#FAF6F1", 0));
+      glow.addColorStop(0, rgba("#F8F5F2", 0.5));
+      glow.addColorStop(1, rgba("#F8F5F2", 0));
       ctx.fillStyle = glow;
       ctx.fillRect(-620, -520, 1240, 1040);
     }
@@ -216,7 +216,7 @@ function drawMotif(ctx: Ctx, motif: MotifId, x: number, y: number, scale = 1, on
       ctx.stroke();
     });
     // la goutte qui a fait l'onde
-    ctx.fillStyle = onPaper ? "#9CAF9A" : rgba("#FAF6F1", 0.95);
+    ctx.fillStyle = onPaper ? "#9CAF9A" : rgba("#F8F5F2", 0.95);
     ctx.beginPath();
     ctx.moveTo(0, -250);
     ctx.bezierCurveTo(26, -206, 44, -176, 44, -150);
@@ -228,13 +228,13 @@ function drawMotif(ctx: Ctx, motif: MotifId, x: number, y: number, scale = 1, on
     blob(ctx, 120, 170, 330, 7, "#8B5E45");
     blob(ctx, 40, 90, 290, 3, m.accent);
     blob(ctx, 250, -230, 150, 11, rgba("#EFE2D8", 0.85));
-    blob(ctx, -170, 300, 110, 5, rgba("#C9A48A", 0.55));
+    blob(ctx, -170, 300, 110, 5, rgba("#D4A78F", 0.55));
     // mouchetures de l'argile
     const r = rng(19);
     for (let i = 0; i < 380; i++) {
       const a = r() * Math.PI * 2;
       const d = Math.sqrt(r()) * 330;
-      ctx.fillStyle = rgba(i % 3 ? "#3B2A33" : "#FAF6F1", 0.12 + r() * 0.2);
+      ctx.fillStyle = rgba(i % 3 ? "#221B1D" : "#F8F5F2", 0.12 + r() * 0.2);
       ctx.beginPath();
       ctx.arc(40 + Math.cos(a) * d, 90 + Math.sin(a) * d * 0.8, 1 + r() * 3.2, 0, Math.PI * 2);
       ctx.fill();
@@ -300,9 +300,9 @@ export function drawFront(ctx: Ctx, d: CardData, f: CardFonts) {
 export function drawBack(ctx: Ctx, d: CardData, f: CardFonts) {
   const m = motifDe(d.motif);
   const dark = d.motif === "argile";
-  const paper = dark ? "#46333D" : "#FAF6F1";
-  const ink = dark ? "#FAF6F1" : "#3B2A33";
-  const soft = dark ? "#E8DDD0" : "#65535D";
+  const paper = dark ? "#46333D" : "#F8F5F2";
+  const ink = dark ? "#F8F5F2" : "#221B1D";
+  const soft = dark ? "#EFE6DF" : "#65535D";
   const P = 96;
   ctx.save();
   ctx.clearRect(0, 0, CARD_W, CARD_H);
@@ -323,7 +323,7 @@ export function drawBack(ctx: Ctx, d: CardData, f: CardFonts) {
   ctx.globalAlpha = 0.85;
   drawMotif(ctx, d.motif, 1400, 770, 0.26, !dark);
   ctx.restore();
-  grain(ctx, "#3B2A33", 0.04, 9);
+  grain(ctx, "#221B1D", 0.04, 9);
 
   const colX = 1060;
   // filet vertical

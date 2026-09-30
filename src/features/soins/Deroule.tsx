@@ -111,8 +111,8 @@ export function Deroule({ etapes, titre, duree, intro }: { etapes: Etape[]; titr
           </div>
           <div ref={drop} aria-hidden className="absolute left-0 top-0 hidden size-6 place-items-center lg:motion-safe:grid">
             <svg viewBox="0 0 24 24" className="size-6 -translate-y-1/2 drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]">
-              <path d="M12 2.5c3.6 4.5 6.1 8.2 6.1 11.4a6.1 6.1 0 1 1-12.2 0c0-3.2 2.5-6.9 6.1-11.4Z" fill="#C9A48A" />
-              <path d="M9 14.6c.3 1.4 1.3 2.4 2.7 2.7" fill="none" stroke="#FFFDFA" strokeOpacity=".8" strokeLinecap="round" />
+              <path d="M12 2.5c3.6 4.5 6.1 8.2 6.1 11.4a6.1 6.1 0 1 1-12.2 0c0-3.2 2.5-6.9 6.1-11.4Z" fill="#D4A78F" />
+              <path d="M9 14.6c.3 1.4 1.3 2.4 2.7 2.7" fill="none" stroke="#FFFFFF" strokeOpacity=".8" strokeLinecap="round" />
             </svg>
           </div>
 

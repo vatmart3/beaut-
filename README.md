@@ -57,11 +57,11 @@ pages, JSON-LD — il reste identique sur tout le site.
 
 ### Images
 
-- Le portrait du hero est `public/images/hero-portrait.png` (PNG détouré). Il s'agit
-  d'un **placeholder dont les droits ne sont pas établis** : remplacez-le avant la
-  mise en ligne (prompt et format exacts dans `ASSETS.md`). Si le cadrage change,
-  ajustez dans `src/sections/home/Hero.tsx` la position du point sur la joue
-  (`left-[54.9%] top-[33.6%]`), le tracé du trait (`d="M368 236 …"`) et la carte soin.
+- Le portrait du hero est `public/images/hero-modele.png` (PNG détouré, photo Pexels).
+  Si vous le remplacez et que le cadrage change, ajustez dans
+  `src/sections/home/Hero.tsx` le point sur la joue (`left-[64.3%] top-[50.6%]`),
+  le tracé du trait (`d="M770 860 …"`) et, dans `hero.module.css`, le ratio `1197 / 1700`.
+- Les recadrages utilisés partout sont dans `public/images/brume/`.
 - Les autres visuels sont procéduraux (`src/components/ui/Matiere.tsx`) : pour mettre
   de vraies photos, remplacez `<Matiere …/>` par `next/image` avec les mêmes ratios.
 

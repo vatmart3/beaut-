@@ -128,7 +128,7 @@ export function Header() {
               >
                 {site.contact.phone}
               </a>
-              <Link href="/reserver" className={cn(pill, "border-prune bg-prune text-lait hover:bg-[#2c1f26]")}>
+              <Link href="/reserver" className={cn(pill, "border-prune bg-prune text-lait hover:bg-[#000000]")}>
                 Réserver
               </Link>
             </div>

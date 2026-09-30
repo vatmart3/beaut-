@@ -21,7 +21,7 @@ export async function renderOg({ eyebrow, title, detail }: { eyebrow: string; ti
   const [light, medium, gloock, portrait] = await assets;
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", background: "#F1EBE3", padding: 24, fontFamily: "Manrope" }}>
+      <div style={{ width: "100%", height: "100%", display: "flex", background: "#F1EFEC", padding: 24, fontFamily: "Manrope" }}>
         <div
           style={{
             position: "relative",
@@ -29,9 +29,9 @@ export async function renderOg({ eyebrow, title, detail }: { eyebrow: string; ti
             width: "100%",
             height: "100%",
             borderRadius: 40,
-            background: "#FFFDFA",
+            background: "#FFFFFF",
             overflow: "hidden",
-            color: "#3B2A33",
+            color: "#221B1D",
           }}
         >
           <div
@@ -49,10 +49,10 @@ export async function renderOg({ eyebrow, title, detail }: { eyebrow: string; ti
             BRUME
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`data:image/png;base64,${portrait}`} width={520} height={545} style={{ position: "absolute", right: 150, bottom: -2 }} alt="" />
+          <img src={`data:image/png;base64,${portrait}`} width={394} height={560} style={{ position: "absolute", right: 210, bottom: -2 }} alt="" />
           <div style={{ position: "absolute", left: 48, top: 40, display: "flex", gap: 12 }}>
             {["Balaruc-les-Bains", eyebrow].map((p) => (
-              <div key={p} style={{ display: "flex", border: "1.5px solid rgba(59,42,51,.45)", borderRadius: 999, padding: "10px 22px", fontSize: 22, fontWeight: 500 }}>
+              <div key={p} style={{ display: "flex", border: "1.5px solid rgba(34,27,29,.45)", borderRadius: 999, padding: "10px 22px", fontSize: 22, fontWeight: 500 }}>
                 {p}
               </div>
             ))}
@@ -68,11 +68,11 @@ export async function renderOg({ eyebrow, title, detail }: { eyebrow: string; ti
               background: "rgba(255,253,250,.92)",
               borderRadius: 28,
               padding: "26px 30px",
-              boxShadow: "0 20px 50px -20px rgba(59,42,51,.35)",
+              boxShadow: "0 20px 50px -20px rgba(34,27,29,.35)",
             }}
           >
             <div style={{ fontFamily: "Gloock", fontSize: 46, lineHeight: 1.05 }}>{title}</div>
-            {detail ? <div style={{ marginTop: 12, fontSize: 24, color: "#65535D" }}>{detail}</div> : null}
+            {detail ? <div style={{ marginTop: 12, fontSize: 24, color: "#5F5457" }}>{detail}</div> : null}
           </div>
         </div>
       </div>
