@@ -11,8 +11,23 @@ import { aPartirDe, plageDuree } from "./filters";
  * visible en vignette-galet sur mobile. Toute la ligne mène à la fiche
  * (lien étiré) ; « Réserver » reste un lien distinct, au-dessus.
  */
-export function SoinLigne({ soin, index, headingLevel = "h4" }: { soin: Soin; index: string; headingLevel?: "h3" | "h4" }) {
-  return soin.signature ? <Signature soin={soin} index={index} Heading={headingLevel} /> : <Ligne soin={soin} index={index} Heading={headingLevel} />;
+export function SoinLigne({
+  soin,
+  index,
+  headingLevel = "h4",
+  variant = "auto",
+}: {
+  soin: Soin;
+  index: string;
+  headingLevel?: "h3" | "h4";
+  /** `auto` : les soins signature prennent plus de place. `ligne` : toujours une ligne simple. */
+  variant?: "auto" | "ligne";
+}) {
+  return soin.signature && variant === "auto" ? (
+    <Signature soin={soin} index={index} Heading={headingLevel} />
+  ) : (
+    <Ligne soin={soin} index={index} Heading={headingLevel} />
+  );
 }
 
 function Prix({ soin, large }: { soin: Soin; large?: boolean }) {
@@ -33,8 +48,8 @@ function Reserver({ slug, nom }: { slug: string; nom: string }) {
   return (
     <Link
       href={`/reserver?soin=${slug}`}
-      aria-label={`Réserver : ${nom}`}
-      className="relative z-10 inline-flex min-h-11 items-center gap-2 rounded-full border border-prune/25 px-4 font-display text-[0.8125rem] text-prune transition-[background-color,border-color,color] duration-[var(--dur-2)] ease-[var(--ease-veil)] hover:border-prune hover:bg-prune hover:text-lait active:scale-[0.97] focus-visible:border-prune"
+      aria-label={`Réserver : ${nom}`}
+      className="relative z-10 inline-flex min-h-11 items-center gap-2 rounded-full border border-prune/25 px-4 font-display text-[0.8125rem] text-prune transition-[background-color,border-color,color,scale] duration-[var(--dur-2)] ease-[var(--ease-veil)] hover:border-prune hover:bg-prune hover:text-lait active:scale-[0.97] focus-visible:border-prune"
     >
       Réserver
       <Icon name="calendrier" size={16} />
@@ -59,16 +74,16 @@ const etire = "after:absolute after:inset-0 after:z-[1] after:rounded-[var(--rad
 
 function Ligne({ soin, index, Heading }: { soin: Soin; index: string; Heading: "h3" | "h4" }) {
   return (
-    <article className="group relative grid grid-cols-[4rem_minmax(0,1fr)] items-start gap-x-4 gap-y-3 rounded-[var(--radius-card)] px-2 py-6 transition-colors duration-[var(--dur-3)] ease-[var(--ease-veil)] hover:bg-lait sm:grid-cols-[4.5rem_minmax(0,1fr)_auto] sm:px-4 lg:grid-cols-12 lg:items-center lg:gap-x-6 lg:py-8">
+    <article className="group relative isolate grid grid-cols-[4rem_minmax(0,1fr)] items-start gap-x-4 gap-y-3 rounded-[var(--radius-card)] px-2 py-6 transition-colors duration-[var(--dur-3)] ease-[var(--ease-veil)] hover:bg-lait sm:grid-cols-[4.5rem_minmax(0,1fr)_auto] sm:px-4 lg:grid-cols-12 lg:items-center lg:gap-x-6 lg:py-8">
       {/* Matière : vignette-galet sur mobile, révélation au survol sur desktop */}
       <div
         aria-hidden
-        className="galet relative size-16 overflow-hidden shadow-[var(--shadow-galet)] sm:size-[4.5rem] lg:pointer-events-none lg:absolute lg:left-[47%] lg:top-1/2 lg:z-0 lg:h-52 lg:w-40 lg:-translate-y-1/2 lg:rotate-[-6deg] lg:scale-90 lg:opacity-0 lg:[clip-path:circle(0%_at_50%_60%)] lg:transition-[clip-path,opacity,transform] lg:duration-[900ms] lg:ease-[var(--ease-veil)] lg:group-hover:rotate-[3deg] lg:group-hover:scale-100 lg:group-hover:opacity-100 lg:group-hover:[clip-path:circle(75%_at_50%_60%)] lg:group-focus-within:scale-100 lg:group-focus-within:opacity-100 lg:group-focus-within:[clip-path:circle(75%_at_50%_60%)]"
+        className="galet relative size-16 overflow-hidden shadow-[var(--shadow-galet)] sm:size-[4.5rem] lg:pointer-events-none lg:absolute lg:left-[42%] lg:top-1/2 lg:-z-10 lg:h-48 lg:w-36 lg:-translate-y-1/2 lg:rotate-[-6deg] lg:scale-90 lg:opacity-0 lg:[clip-path:circle(0%_at_50%_60%)] lg:transition-[clip-path,opacity,rotate,scale] lg:duration-[900ms] lg:ease-[var(--ease-veil)] lg:group-hover:rotate-[3deg] lg:group-hover:scale-100 lg:group-hover:opacity-100 lg:group-hover:[clip-path:circle(75%_at_50%_60%)] lg:group-focus-within:scale-100 lg:group-focus-within:opacity-100 lg:group-focus-within:[clip-path:circle(75%_at_50%_60%)]"
       >
-        <Matiere kind={soin.matiere} breathe={false} className="size-full" sizes="(min-width: 1024px) 10rem, 4.5rem" />
+        <Matiere kind={soin.matiere} breathe={false} className="size-full" sizes="(min-width: 1024px) 9rem, 4.5rem" />
       </div>
 
-      <div className="min-w-0 lg:col-span-6 lg:col-start-1 lg:flex lg:items-baseline lg:gap-6">
+      <div className="min-w-0 lg:col-span-5 lg:col-start-1 lg:flex lg:items-baseline lg:gap-6">
         <span aria-hidden className="tabular hidden font-serif text-caption text-prune-mute lg:inline">
           {index}
         </span>

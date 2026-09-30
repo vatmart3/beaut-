@@ -70,18 +70,22 @@ function CarteVue({ filtres, onChange }: { filtres: Filtres; onChange: (f: Filtr
   const index = new Map(soins.map((s, i) => [s.slug, numero(i)]));
   const cat = filtres.categorie ? getCategorie(filtres.categorie) : null;
 
-  const choisirCategorie = (id: CategorieId | null, e: MouseEvent<HTMLButtonElement>) => {
-    if (id === filtres.categorie) return;
-    const box = zone.current?.getBoundingClientRect();
-    const r = e.currentTarget.getBoundingClientRect();
-    if (box && box.width > 0 && box.height > 0) {
-      setOnde((o) => ({
-        n: o.n + 1,
-        x: Math.min(1, Math.max(0, (r.left + r.width / 2 - box.left) / box.width)),
-        y: Math.min(1, Math.max(0, (r.top + r.height / 2 - box.top) / box.height)),
-      }));
+  /** Tout changement de famille relance l'onde — depuis la pastille cliquée, ou le haut de la liste. */
+  const changer = (next: Filtres, source?: HTMLElement) => {
+    if (next.categorie !== filtres.categorie) {
+      const box = zone.current?.getBoundingClientRect();
+      const r = source?.getBoundingClientRect();
+      if (box && box.width > 0 && box.height > 0) {
+        const x = r ? (r.left + r.width / 2 - box.left) / box.width : 0.5;
+        const y = r ? (r.top + r.height / 2 - box.top) / box.height : 0.08;
+        setOnde((o) => ({ n: o.n + 1, x: Math.min(1, Math.max(0, x)), y: Math.min(1, Math.max(0, y)) }));
+      }
     }
-    onChange({ ...filtres, categorie: id });
+    onChange(next);
+  };
+
+  const choisirCategorie = (id: CategorieId | null, e: MouseEvent<HTMLButtonElement>) => {
+    if (id !== filtres.categorie) changer({ ...filtres, categorie: id }, e.currentTarget);
   };
 
   const actifs = [
@@ -137,8 +141,8 @@ function CarteVue({ filtres, onChange }: { filtres: Filtres; onChange: (f: Filtr
               <li key={a.key}>
                 <button
                   type="button"
-                  onClick={() => onChange({ ...filtres, [a.key]: null })}
-                  className="group/chip inline-flex min-h-11 items-center gap-2 rounded-full bg-sable/70 pl-4 pr-2 font-display text-[0.8125rem] text-prune transition-colors duration-[var(--dur-2)] ease-[var(--ease-veil)] hover:bg-argile-pale active:scale-[0.97]"
+                  onClick={(e) => changer({ ...filtres, [a.key]: null }, e.currentTarget)}
+                  className="group/chip inline-flex min-h-11 items-center gap-2 rounded-full bg-sable/70 pl-4 pr-2 font-display text-[0.8125rem] text-prune transition-[background-color,scale] duration-[var(--dur-2)] ease-[var(--ease-veil)] hover:bg-argile-pale active:scale-[0.97]"
                 >
                   {a.label}
                   <span className="grid size-7 place-items-center rounded-full bg-ecume transition-transform duration-[var(--dur-3)] ease-[var(--ease-veil)] group-hover/chip:rotate-90">
@@ -152,7 +156,7 @@ function CarteVue({ filtres, onChange }: { filtres: Filtres; onChange: (f: Filtr
               <li>
                 <button
                   type="button"
-                  onClick={() => onChange(filtresVides)}
+                  onClick={(e) => changer(filtresVides, e.currentTarget)}
                   className="min-h-11 rounded-full px-3 font-display text-[0.8125rem] text-prune-soft underline decoration-prune/30 underline-offset-4 transition-colors hover:text-prune hover:decoration-prune"
                 >
                   Tout effacer
@@ -185,7 +189,7 @@ function CarteVue({ filtres, onChange }: { filtres: Filtres; onChange: (f: Filtr
         <div className="relative mt-8">
           <AnimatePresence mode="popLayout" initial={false}>
             {groupes.length === 0 ? (
-              <Vide key="vide" onReset={() => onChange(filtresVides)} reduced={reduced} />
+              <Vide key="vide" onReset={() => changer(filtresVides)} reduced={reduced} />
             ) : (
               groupes.map((g) => (
                 <motion.section
@@ -232,6 +236,7 @@ function Rangee({ soin, i, numero, reduced, ref }: { soin: Soin; i: number; nume
   return (
     <motion.li
       ref={ref}
+      className="relative hover:z-10 focus-within:z-10"
       layout={reduced ? false : "position"}
       initial={reduced ? { opacity: 0 } : { opacity: 0, y: 24, filter: "blur(12px)" }}
       animate={reduced ? { opacity: 1 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -270,7 +275,7 @@ function Pastille({
       aria-pressed={active}
       onClick={onClick}
       className={cn(
-        "relative inline-flex min-h-11 items-center justify-center rounded-full border px-4 font-display text-[0.875rem] leading-none tracking-[-0.005em] transition-[border-color,color,transform] duration-[var(--dur-2)] ease-[var(--ease-veil)] active:scale-[0.96]",
+        "relative inline-flex min-h-11 items-center justify-center rounded-full border px-4 font-display text-[0.875rem] leading-none tracking-[-0.005em] transition-[border-color,color,scale] duration-[var(--dur-2)] ease-[var(--ease-veil)] active:scale-[0.96]",
         active ? "border-prune text-lait" : "border-prune/25 text-prune hover:border-prune/70",
       )}
     >
@@ -305,7 +310,7 @@ function Vide({ onReset, reduced, ref }: { onReset: () => void; reduced: boolean
       <div className="lg:col-span-6">
         <h3 className="font-display text-title font-light tracking-[-0.035em]">Aucun soin ne réunit ces critères.</h3>
         <p className="mt-3 max-w-[48ch] text-prune-soft">
-          Élargissez la durée ou le budget : la plupart de nos soins existent en plusieurs formules. Ou appelez-nous, nous trouverons
+          Élargissez la durée ou le budget : la plupart de nos soins existent en plusieurs formules. Ou appelez-nous, nous trouverons
           ensemble le bon protocole.
         </p>
       </div>

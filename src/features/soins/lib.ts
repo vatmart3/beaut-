@@ -1,10 +1,11 @@
 import { cures, detailsCure, type Cure } from "@/data/rituels";
-import { soins, type Soin } from "@/data/soins";
+import { formatPrix, prixDepart, soins, type Soin } from "@/data/soins";
+import { aPartirDe, plageDuree } from "./filters";
 import { serviceJsonLd } from "@/lib/seo";
 import { siteUrl } from "@/config/site";
 
 /** La cure la plus longue proposée pour un soin (celle qui ancre le mieux le prix). */
-export function cureDe(slug: string): (Cure & ReturnType<typeof detailsCure>) | null {
+export function cureDe(slug: string): (Omit<Cure, "soin"> & ReturnType<typeof detailsCure>) | null {
   const list = cures.filter((c) => c.soin === slug).sort((a, b) => b.seances - a.seances);
   return list[0] ? { ...list[0], ...detailsCure(list[0]) } : null;
 }
@@ -45,19 +46,16 @@ export function carteJsonLd(list: Soin[] = soins) {
 export const numero = (i: number) => String(i + 1).padStart(2, "0");
 
 /** Métadonnées d'une fiche : title ≤ 60, description ≤ 155, toujours avec « Balaruc-les-Bains ». */
-export function ficheMeta(s: Soin, prix: string, duree: string) {
+export function ficheMeta(s: Soin) {
   const titles = [
     `${s.nom} à Balaruc-les-Bains · BRUME`,
     `${s.nom} · Balaruc-les-Bains`,
     `${s.nom.split(" — ")[0]} · Balaruc-les-Bains`,
   ];
   const title = titles.find((t) => t.length <= 60) ?? titles[titles.length - 1].slice(0, 60);
-  const head = `${s.nom} à Balaruc-les-Bains : ${duree}, dès ${prix}.`;
-  const full = `${head} ${s.accroche}`;
-  let description = full;
-  if (full.length > 155) {
-    const alt = `${head} Chez BRUME, institut de soins.`;
-    description = alt.length <= 155 ? alt : head.slice(0, 155);
-  }
+  const prix = `${aPartirDe(s) ? "dès " : ""}${formatPrix(prixDepart(s))}${s.personnes === 2 ? " pour deux" : ""}`;
+  const head = `${s.nom} à Balaruc-les-Bains : ${plageDuree(s)}, ${prix}.`;
+  const candidates = [`${head} ${s.accroche} Institut BRUME, près de Sète.`, `${head} ${s.accroche}`, `${head} Institut BRUME, près de Sète.`, head];
+  const description = candidates.find((d) => d.length <= 155) ?? head.slice(0, 155);
   return { title, description };
 }
