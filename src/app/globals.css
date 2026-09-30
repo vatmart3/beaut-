@@ -1,26 +1,251 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ==========================================================================
+   BRUME — Design system
+   Source unique des tokens : couleurs, typographies, rayons, ombres,
+   easings, durées. Tout le reste du site consomme ces variables.
+   ========================================================================== */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@theme {
+  /* — Couleurs de marque ------------------------------------------------ */
+  --color-lait: #faf6f1;
+  --color-argile: #c9a48a;
+  --color-sauge: #9caf9a;
+  --color-sable: #e8ddd0;
+  --color-prune: #3b2a33;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* — Dérivés (contrastes vérifiés AA sur lait / écume) ----------------- */
+  --color-prune-soft: #65535d; /* texte secondaire · 6,6:1 sur lait */
+  --color-prune-mute: #7a6a72; /* légendes ≥ 14px · 4,7:1 sur lait */
+  --color-argile-deep: #7e543c; /* accents texte · ≥ 4,5:1 sur lait & sable */
+  --color-sauge-deep: #4e644c; /* accents texte · ≥ 4,5:1 sur lait & sable */
+  --color-voile: #f1ebe3; /* fond de page autour des coquilles */
+  --color-ecume: #fffdfa; /* intérieur des coquilles */
+  --color-argile-pale: #efe2d8;
+  --color-sauge-pale: #e3e9e1;
+  --color-ligne: rgb(59 42 51 / 0.14); /* filets */
+
+  /* — Typographies (variables injectées par next/font) ----------------- */
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-gloock), ui-serif, Georgia, serif;
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+
+  /* — Échelle typographique fluide ------------------------------------ */
+  --text-micro: 0.75rem;
+  --text-micro--line-height: 1.4;
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.45;
+  --text-body: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
+  --text-body--line-height: 1.65;
+  --text-lead: clamp(1.125rem, 1rem + 0.55vw, 1.5rem);
+  --text-lead--line-height: 1.45;
+  --text-title: clamp(1.625rem, 1.2rem + 1.7vw, 2.75rem);
+  --text-title--line-height: 1.12;
+  --text-display: clamp(2.5rem, 1.4rem + 4.6vw, 6rem);
+  --text-display--line-height: 1;
+  --text-mega: clamp(3.5rem, 1rem + 10vw, 11rem);
+  --text-mega--line-height: 0.9;
+  --text-wordmark: clamp(5.5rem, 21.5vw, 26rem);
+  --text-wordmark--line-height: 0.8;
+
+  /* — Espacements de rythme (silences) -------------------------------- */
+  --spacing-gutter: clamp(1rem, 0.6rem + 1.8vw, 2.25rem);
+  --spacing-silence: clamp(6rem, 4rem + 9vw, 13rem);
+  --spacing-breath: clamp(3rem, 2rem + 4vw, 6rem);
+
+  /* — Rayons ---------------------------------------------------------- */
+  --radius-soft: 18px;
+  --radius-card: 28px;
+  --radius-shell: clamp(24px, 1rem + 1.6vw, 44px);
+
+  /* — Ombres « sous un voile d'eau » ---------------------------------- */
+  --shadow-veil: 0 1px 1px rgb(59 42 51 / 0.03), 0 12px 30px -12px rgb(59 42 51 / 0.12),
+    0 40px 80px -40px rgb(59 42 51 / 0.14);
+  --shadow-float: 0 2px 4px rgb(59 42 51 / 0.04), 0 24px 60px -20px rgb(59 42 51 / 0.22);
+  --shadow-galet: inset 0 -10px 24px -8px rgb(59 42 51 / 0.12), inset 0 10px 18px -10px rgb(255 255 255 / 0.9),
+    0 26px 40px -24px rgb(59 42 51 / 0.35);
+
+  /* — Easings --------------------------------------------------------- */
+  --ease-veil: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-tide: cubic-bezier(0.7, 0, 0.2, 1);
+  --ease-fall: cubic-bezier(0.55, 0, 1, 0.45);
+  --ease-float: cubic-bezier(0.33, 1, 0.68, 1);
+
+  /* — Animations utilitaires ------------------------------------------ */
+  --animate-breathe: breathe 7s var(--ease-tide) infinite alternate;
+  --animate-drift: drift 14s ease-in-out infinite alternate;
+
+  @keyframes breathe {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.02);
+    }
+  }
+  @keyframes drift {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(0, -10px, 0);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  /* Durées (consommées en CSS et en JS via lib/motion.ts) */
+  --dur-1: 200ms;
+  --dur-2: 350ms;
+  --dur-3: 500ms;
+  --dur-4: 700ms;
+  --header-h: 76px;
+  color-scheme: light;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+@layer base {
+  html {
+    background: var(--color-voile);
+    color: var(--color-prune);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-weight: 350;
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    background: var(--color-voile);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-argile);
+    color: var(--color-prune);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-prune);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  button,
+  [role="button"] {
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: max(16px, 1rem); /* évite le zoom iOS */
+  }
+
+  img {
+    -webkit-user-drag: none;
+  }
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Utilitaires maison
+   ========================================================================== */
+
+@utility shell {
+  /* grand conteneur arrondi « coquille », comme la référence */
+  border-radius: var(--radius-shell);
+  background: var(--color-ecume);
+}
+
+@utility frame {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+  max-width: 1760px;
+}
+
+@utility eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--text-micro);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+@utility grain {
+  position: relative;
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background-image: url("/textures/grain.svg");
+    background-size: 220px;
+    opacity: 0.22;
+    mix-blend-mode: multiply;
+    z-index: 1;
+  }
+}
+
+@utility galet {
+  border-radius: 58% 42% 55% 45% / 52% 58% 42% 48%;
+}
+
+@utility hairline {
+  border-color: var(--color-ligne);
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Réduction des animations : on garde des fondus simples, rien ne bouge. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
 }
