@@ -81,6 +81,8 @@ const codeRe = /^BRM-[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}$/;
 const phoneRe = /^[+()\d][\d\s().-]{8,19}$/;
 const dateRe = /^\d{4}-\d{2}-\d{2}$/;
 
+const conditionnels = ["type", "montant", "soin", "variante", "remise", "emailDestinataire", "dateEnvoi"];
+
 export const giftSchema = z
   .object({
     type: z.enum(["montant", "soin"]),
@@ -126,6 +128,12 @@ export const giftSchema = z
       else if (d.dateEnvoi < min || d.dateEnvoi > max)
         ctx.addIssue({ code: "custom", path: ["dateEnvoi"], message: `La date d'envoi doit se situer dans les ${ENVOI_MAX_JOURS} prochains jours.` });
     }
+  }, {
+    // Vérifie aussi ces champs quand d'autres sont invalides : toutes les erreurs s'affichent d'un coup.
+    when: (payload) => {
+      const v = payload.value as Record<string, unknown> | null;
+      return !!v && typeof v === "object" && conditionnels.every((k) => typeof v[k] === "string");
+    },
   });
 
 export type GiftInput = z.input<typeof giftSchema>;

@@ -145,12 +145,16 @@ export function GiftConfigurator() {
   useEffect(() => {
     const onOffrir = (e: Event) => {
       const slug = (e as CustomEvent<string>).detail;
-      setDone(null);
+      if (done) {
+        // un bon vient d'être validé : on repart d'une carte vierge, avec un nouveau code
+        reset({ ...giftDefaults, code: genererCode() });
+        setDone(null);
+      }
       applySoin(slug);
     };
     window.addEventListener(OFFRIR_EVENT, onOffrir);
     return () => window.removeEventListener(OFFRIR_EVENT, onOffrir);
-  }, [applySoin]);
+  }, [applySoin, done, reset]);
 
   const validate = submitCount > 0;
   const setMontant = (n: number) => setValue("montant", String(n), { shouldValidate: validate, shouldDirty: true });

@@ -103,7 +103,9 @@ export function creneaux(
   const ids =
     personnes === 2 || praticienne === "indifferent"
       ? praticiennes.filter((p) => p.jours.includes(d.getDay())).map((p) => p.id)
-      : [praticienne];
+      : praticiennes.some((p) => p.id === praticienne && p.jours.includes(d.getDay()))
+        ? [praticienne]
+        : [];
 
   const libre = (id: string, debut: number) => {
     for (let m = debut; m < debut + duree; m += PAS) {

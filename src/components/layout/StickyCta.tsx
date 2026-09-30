@@ -20,6 +20,8 @@ export function StickyCta() {
   }, []);
   const onReserver = pathname.startsWith("/reserver");
   const onCadeaux = pathname.startsWith("/bons-cadeaux");
+  // Le tunnel de réservation a son propre récapitulatif collant.
+  if (onReserver) return null;
 
   return (
     <motion.div

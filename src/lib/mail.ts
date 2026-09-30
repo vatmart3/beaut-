@@ -22,7 +22,8 @@ export async function sendMail({
   const key = process.env.RESEND_API_KEY;
   const from = process.env.MAIL_FROM ?? `${site.name} <onboarding@resend.dev>`;
   if (!key) {
-    console.info("[mail:démo]", JSON.stringify({ to, subject, scheduledAt, text: text.slice(0, 500) }));
+    // Démo : on ne journalise jamais le corps (il peut contenir des données de santé).
+    console.info("[mail:démo]", JSON.stringify({ to, subject, scheduledAt, length: text.length }));
     return { ok: true, demo: true };
   }
   try {
